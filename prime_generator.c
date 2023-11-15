@@ -2,18 +2,7 @@
 #include <stdbool.h>
 
 
-bool checkPrime(long int testNum)
-{
-    for (int j = 2; j < testNum; j++)
-        {
-            if (testNum % j == 0)
-            {
-                return false;
-            }
-        }
-
-    return true;
-}
+bool checkPrime(long int testNum);
 
 int main()
 {
@@ -42,4 +31,17 @@ int main()
     printf("\n%ld\n\n", lastPrime);
 
     return 0;
+}
+
+bool checkPrime(long int testNum)
+{
+    for (int j = 2; j < testNum; j++)
+        {
+            if (testNum % j == 0)
+            {
+                return false;
+            }
+        }
+
+    return true;
 }
