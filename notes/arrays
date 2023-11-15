@@ -1,0 +1,10 @@
+- arrays can not change its size, fixed size
+- you can't store multiple types of data types
+
+Array
+    - elements
+
+runtime errors:
+    - array out of bounds error is only going to `show during runtime`
+    
+
