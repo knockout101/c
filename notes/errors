@@ -1,0 +1,17 @@
+Errors: 
+    syntax errors - structure
+    semantic errors - something wrong with meaning
+    linker errors - linker is having trouble linking all the object files together to create an executable
+
+
+Linker Errors:
+    - The linker is having trouble linking all the object files together to create an executable
+    - Usually there is a library or object file that is missing
+
+Runtime Errors:
+    - Errors that occur when the program is executing
+    - Some typical runtime errors
+        - divide by zero
+        - file not found
+        - out of memory
+    - Can cause program to crash

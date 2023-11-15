@@ -1,0 +1,36 @@
+- Unique C feature not found in many other higher-level languages
+- allows for programs to be easier to develop, easier to read, easier to modify, and easier to port to different computer systems
+
+- Part of the C compilation process that recognizes special statements
+    - analyzes these statements before analysis of the c program itself takes place
+    - an instruction to your compiler to do something before compiling the source code
+    - could be anywhere in your code
+
+- Proprocessor statements are indentified by the presence of a pound sign # which must be the first non-space character on the line
+- out first "challenge" used a preprocessor directive, specifically the #include directive
+
+- We will utilize the preprocessor to:
+    - create our own constants and macros with the #define statement
+    - build your own library files with the #include statement
+    - make more powerful programs with the conditional #ifdef, #endif, #else and #ifndef Statements
+
+
+#include <stdio.h>
+
+".h" refers to the extension of the file and it is describing a "header file"
+
+- Header Files
+    - header files define information about some of the functions that are provided by that file
+        - stdio.h is the standard C library header and provides functionality for displaying output, among many other things
+        - we need to include this file in a program when using the printf() function from the standard library
+        - stdio.h contains the information that the compiler needs to understand what printf() means, as well as other functions that deal with input and output
+        - stdio is short for standard input/output
+    - header files specify information that the compiler uses to integrate any predefined functions within a program 
+    - You will be creating your own header fiels for use with your programs
+
+    - case sensitive on some systems, so you should always write them in lowercase
+    - two ways to #include header files in a program
+        - using angle brackets (#include <test.h>)
+            - telling the preprocessor to look for the file in one or more standard system direcrtories
+        - using double quotes (#include "test.h")
+            - telling the preprocessor to first look in the current directory

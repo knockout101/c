@@ -1,0 +1,2 @@
+A data type that allows a programmer to define a variable and specify the values that could be stored into that variable
+    - can create a variable named "myColor" and it can only contain one of the primary colors, red, yellow, or blue and no other values

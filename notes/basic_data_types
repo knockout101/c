@@ -1,0 +1,22 @@
+Basic data types in C are:
+    - int
+    - float
+    - double
+    - char
+    - _Bool
+
+- The difference between the types is in the amount of memory they occupy and the range of values they can hold
+    - the amount of storage that is allocated to store a particular type of data
+    - depends on the computer you are running (machine-dependent)
+    - an integer might take up 32 bits on your computer, or perhaps it might be stored in 64 bits
+
+- int is a signed integer and it can store hexadecimal notation
+
+- float stores decimals
+
+- double is used as a float when float is taking up to little memory to store the value
+
+- C offers three adjective keywards to modify the basic integer type (can also be used by itself)
+    - short, long, and unsigned
+
+- the type 'short int' or 'short' may use less storage when only small numbers are needed
