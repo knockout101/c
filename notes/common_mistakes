@@ -1,0 +1,64 @@
+- missing semicolon
+
+- Omitting prototype declarations
+    - result = squareRoot(2);
+
+    - compiler assumes that the function returns adn int 
+    - always safest to include a prototype declaration for all functions that you can call (either explicitly yourself or implicitly by including the correct header file in your program)
+
+- Failing to include the header file that includes the definition for a C-programming library function being used in the program
+
+    - double answer = sqrt(value1);
+
+    - if this program does not #include the <math.h> file, this will generate an error that sqrt() is undefined
+
+- Confusing a character constant and a character string
+
+    - text = 'a';
+    vs.
+    - text = "a";
+
+    - a pointer to the character string "a" is assigned to text variable
+
+    - in the first case, `text` is normally declared to be a char variable
+    - in the second case, it should be declared to be of type "pointer to char"
+
+- using the wrong bounds for an array
+
+- int a[100], i, sum = 0;
+
+- for (i = 1; i <= 100; ++i)
+    sum += a[i];
+
+    - loop needs to go to  `i < 100` and needs to start at 0 not 1 because all arrays start at index 0
+
+- forgetting to reserve an extra location for the terminating null character of a string
+    - when declaring character arrays they needt  obe large enough to contain the terminating null character
+    - the character string "hello" would require six locations in a character array if you wanted to store a null at the end
+    - ['h', 'e', 'l', 'l', 'o', '\0'] length = 6
+
+- confusing the operator -> with the . operator when referencing structure members.
+    - the operator . is used for structure variables
+    - the operator -> is used for structure pointer variables
+
+- omitting the ampersand before nonpointer variables in a scanf() call
+
+    - int number;
+
+    - scanf("%i", number);
+
+[SEG FAULT]
+- using a pointer variable before it's initialized
+
+- char *char_pointer;
+*char_pointer = 'X';
+
+- you can only apply the indirection operator to a pointer variable after you have set the variable pointing somewhere
+
+- omitting the break statement at he end of a case in a switch statement
+    - if a break is not included at the end of a case, then execution continues into the next case
+
+- inserting a semicolon at the end of a preprocessor definition
+    - usually happens because it becomes a matter of habit to end all statements with semicolons
+
+    #define END_OF_DATA 999; <--!!!!

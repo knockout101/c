@@ -1,0 +1,66 @@
+- Declaring a pointer
+    - int *pnumber; // int pointer stores any address of type int
+
+    - char *pc;
+    - float * pf; 
+
+- the space between the * and the pointer name is optional
+    - programmers use the space in a declaration and omit it when dereferencing a variable
+
+- the value of a pointer is an address, and it is represented internally as an unsigned integer on most systems
+    - however, you shouldn't think of a pointer as an integer type
+    - things you can do with integers that you can not do with pointers, and vice versa
+    - you can multiple one integer by another, but you can not multiply one pointer by another
+
+- %p represents the format specifier for pointers
+
+- the previous declarations creates the variable but does not initialize it
+    - dangerous when not initialized 
+    - you should always initialize a pointer when you declare it
+
+- NULL pointers
+    - you can initialize a pointer so that it doesn't point to anything
+
+    - int *pnumber = NULL;
+
+    - NULL is a constant that is defined in the standard library
+        - is the equivalent of zero for a pointer
+    - NULL is a value that is guaranteed not to point to any location in memory
+        - means that it implicitly prevents the accidental overwriting of memory by using a pointer that does
+          not point to anything specific
+
+- address of operator `&`
+    - int number = 99;
+    - int *pnumber = &number;
+
+    - the initial value of pnumber is the address of the variable number
+        - the declaration of number must precede the declaration of the pointer that stores its address
+        - compiler must have already allocated space and thus an address for number to use itto initialize pnumber
+
+- Be careful
+    - there is nothing special about the declaration of a pointer 
+    - can be declare regular variables and pointers in the same statement
+
+    double value, *pVal, fnum;
+
+    - only the second variable, pVal, is a pointer
+
+    int *p, q;
+
+    - the above declares a pointer, p of the type int*, and a variable, q, that is of type int
+        - a common mistake to think that both p and q are pointers
+
+- you use the indirection operator, *, to access the value of the variable pointed to by a pointer
+    - also referred to as the dereference operator because you use it to "dereference" a pointer
+
+    int number = 15;
+    int *pointer = &number;
+    int result = 0;
+
+    - the pointer variable contains the address of the variable number
+        - you can use this in an expression to calculate a new value for result
+
+        result = *pointer + 5;
+
+        - the expression *pointer will evaluate to the value stored at the address contained in the pointer
+            - the value stored in number , 15, so result will be set to 15 + 5, which is 20
