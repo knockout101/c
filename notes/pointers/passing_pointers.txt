@@ -43,3 +43,29 @@ void swap (int *x, int *y)
 
     return;
 }
+
+- you can communicate two kinds of information about a variable to a function
+
+func(x);
+&
+func(&x);
+
+- you can qualify a function parameter using the const keyword
+    - indicates that the function will treat the argument that is passed for this parameter as a constant
+    - only useful when the parameter is a pointer
+
+- you apply the const keyword to a parameter that is a pointer to specify that a function will not change the value to which the argument pointers
+
+- returning a pointer from a function is a particularly powerful capability
+    - it provides a way for you to return not just a single value, but a whole set of values
+
+- you would have to declare a function returning a pointer
+
+int * myFunction(){
+    .
+    .
+    .
+}
+
+- be careful though, there are specific hazards related to returning a pointer
+    - use local variables to avoid interfering with the variable that the argument points to
