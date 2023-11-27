@@ -1,0 +1,45 @@
+Passing pointers to a function
+
+- there are a few different ways you can pass data to a function
+    - pass by value
+    - pass by reference
+
+- pass by value is when a function copies the actual value of an argument into the formal parameter of the function
+    - changes made to the parameter inside the function have no effect on the argument
+
+- C programming uses call by value to pass arguments
+    - means the code within a function cannot alter the arguments used to call the function
+    - there are no changes in the values, though they had been changed inside the function
+
+void swap(int x, int y)
+{
+    int temp;
+
+    temp = x;
+    x = y;
+    y = temp;
+
+    return;
+}
+
+- pointers and functions get along quite well together
+    - you can pass a pointer as an argument to a function and you can also have a function return a pointer as its result
+
+- pass by reference copies the addresss of an argument into the formal parameter
+    - the address is used to access the actual argument used in the call
+    - means the changes made to the parameter affect the passed argument
+
+- to pass a value by reference, argument pointers are passsed to the functions just like any other value
+    - you need to declare the function parameters as pointers types
+    - changes inside the function are reflected outside the function as well
+    - unlike call by value where the changes do not reflect outside the function
+
+void swap (int *x, int *y)
+{
+    int temp;
+    temp = *x;
+    *x = *y;
+    *y = temp;
+
+    return;
+}
