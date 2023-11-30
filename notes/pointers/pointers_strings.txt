@@ -1,0 +1,36 @@
+Pointers and Strings
+
+- One of the most common applications of using a pointer to an array is as a pointer to a character string
+    - the reasons are one of the notational convenience and efficiency
+    - using a variable of type pointer to char to reference a string give you a lot of flexibility
+
+- if you have an array of character called text, you could similarly define a pointer to be used to point to elements in text
+
+char *textPtr;
+
+- if textPtr is set pointing to the beginning of an array of chars called text
+
+++textPtr;
+
+- the above sets textPtr pointing to the next character in text, which is text[1]
+
+--textPtr;
+
+- the above sets textPtr pointing to the previous character in text, assuming that textPtr was not pointing to the beginning of text prior to the execution of this statement
+
+void copyString(char *to, char *from)
+{
+    while (*from)
+        *to++ = *from++;
+
+    *to = '\0';
+}
+
+int main(void)
+{
+    char string1[] = "A string to be copied.";
+    char string2[50];
+    
+    copyString(string2, string1);
+    printf("%s\n", string2);
+}
