@@ -1,0 +1,78 @@
+Arrays and Structures
+
+- you have seen how useful a structure is in enabling you to logically group related elements together
+    - for example, it is only necessary to keep track of one variable, instead of three, for each date that is used by the program
+    - to handle 10 different dates in a program, you only have to keep track of 10 different variables, instead of 30
+
+
+- a better method for handling the 10 different dates involves the combination of two powerful features of the C programming language
+    - structures and arrays
+    - it is perfectly valid to define an array of structures
+    - the concept of an array of structures is a very powerful and important one in C
+
+- declaring an array of structrures is like declaring any other kind of arrray
+
+struct date myDates[10];
+
+- defines an array called myDates, which consists of 10 elements
+    - each element inside the array is defined to be of type struct date
+
+- to identify memebers of an array of structures, you apply the same rule used for individual structures
+    - follow the structure name with the dot operator and then with the member name
+
+- referencing a particular structure element inside the array is quite natural
+    - to set the second date inside the myDates array to August 8, 1986
+
+myDates[1].month = 8;
+myDates[1].day = 8;
+myDates[1].year = 1986;
+
+- initialization of arrays containing structures is similar to initialization of multidimensional arrays
+
+struct date myDates[5] = {
+    {12, 10, 1975}, {12, 30, 1980}, {11, 15, 2005}
+};
+
+- sets the first three dates in the array myDate to 12/10/1975, 12/30/1980, 11/15/2005
+
+- the inner pairs of braces are optional
+
+struct date myDates[5] = { 12, 10, 1975, 12, 30, 1980, 11, 15, 2005 };
+
+- initializes just the third element of the array to the specifcied value
+
+struct date myDates[5] = { [2] = {12, 10, 1975} };
+
+- sets just the month and day of the second element of the myDates array to 12 and 30
+
+struct date myDates[5] = { [1].month = 12, [1].day = 30 };
+
+- it is also possible to define structures that contain arrays as members
+    - most common use is to set up an array of characters inside a structure
+
+- suppose you want to define a structure called month that contains as its members the number of days in the month as wellas the tree-character abbreviation for the month name
+
+struct month
+{
+    int numberOfDays;
+    char name[3];
+};
+
+- this sets up a month structure that contains an integer member called numberOfDays and a character member called name
+    - member name is actually an array of three characters
+
+- you can now define a cariable to be of type struct month and set the proper fields inside aMonth for January
+
+struct month aMonth;
+aMonth.numberOfDays = 31;
+aMonth.name[0] = 'J';
+aMonth.name[1] = 'a';
+aMonth.name[2] = 'n';
+
+- you can also initialize this variable to the same values
+
+struct month aMonth = { 31, {'J', 'a', 'n'} };
+
+- you can set up 12-month structures inside an array to represent each month of the year
+
+struct month months[12];

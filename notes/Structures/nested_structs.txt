@@ -1,0 +1,79 @@
+struct time
+{
+    int hours;
+    int minutes;
+    int seconds;
+};
+
+- in some applications, you might have the need to group both a date and a time together
+    - you might need to set up al ist of events that are to occur at the same date and time
+
+- define a new structure, dateAndTime, which containes as its members two elements
+- date struct and time struct
+
+struct dateAndTime
+{
+    struct date sdate;
+    struct time stime;
+};
+
+- the first memeber of this structure is the time of struct date and is called sdate
+- the second memeber of the dateAndTime structure is of type struct time and is called stime
+
+- variables can now be defined to be of ttype struct dateAndTime
+
+struct dateAndTime event;
+
+- to reference the date structure of the variable event, the syntax is the same as referencing any member
+
+event.sdate
+
+- continuing for further depth of the structures
+
+event.sdate.month = 10;
+++event.stime.seconds;
+
+- the event variable can be initialized just like normal
+    - sets the date in the variable event to Feb. 1, 2015, and sets the time to 3:30:00.
+
+struct dateAndTime event = { {2, 1, 2015}, {3, 30, 0} };
+
+- you can use members' names in the initialization
+
+struct dateAndTime event = 
+{
+    {.month = 2, .day = 1, .year = 2015},
+    {.hohur = 3, .minutes = 30, .seconds = 0}
+};
+
+- it is also possible to set up an array of dateAndTime structures
+
+struct dateAndTime events[100];
+
+- the array events is declared to contain 100 elements
+
+- to set the first time in the array to noon 
+
+events[0].stime.hour = 12;
+events[0].stime.minutes = 0;
+events[0].stime.seconds = 0;
+
+- you can define the Date structure within the time structure definition
+
+struct time
+{
+    struct Date
+    {
+        int day;
+        int month;
+        int year;
+    } dob;
+
+    int hour;
+    int minutes;
+    int seconds;
+}
+
+- the declaration is enclosed within the scope of the Time structure definition
+    - it does not exit outside it
+    - it becomes impossible to declare a Date variable external to the Time structure

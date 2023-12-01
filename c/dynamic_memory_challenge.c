@@ -26,12 +26,16 @@ int main(void)
 
     userInput = (char*)calloc(100, sizeof(char));
 
-    printf("Please enter a string less than 99 characters: ");
-    scanf("%s", userInput);
+    if (userInput)
+    {
+        printf("\nPlease enter a string less than 99 characters: ");
+        scanf(" ");
+        gets(userInput);
 
-    printf("The value entered: '%s'. At the address [%p] and the size of input is: .", userInput, userInput);
+        printf("\nThe value entered: '%s'. At the address [%p] and the size of input is: %i", userInput, userInput, (int)sizeof(userInput));
 
-    free(userInput);
-
+        free(userInput);
+        userInput = NULL;
+    }
     return 0;
 }
