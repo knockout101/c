@@ -24,7 +24,8 @@ Structure Pointers and Functions Challenge
 #include <stdlib.h>
 #include <string.h>
 
-
+void readItem(Item *pItemEnd, const Item *pItemStart);
+void printItem(const Item *pItem);
 
 struct item
 {
@@ -35,10 +36,6 @@ struct item
 };
 
 typedef struct item Item;
-
-void readItem(Item *pItemEnd, const Item *pItemStart);
-
-void printItem(const Item *pItem);
 
 int main(void)
 {
@@ -53,18 +50,21 @@ int main(void)
         ptr, 50, 0.99, 50 * 0.99
     };
 
-    Item * ptempItem = &tempItem;
+    Item * pTempItem = &tempItem;
 
     const Item item1 = {
         pCans, 9999, 0.10, item1.price * item1.quantity
     };
 
-    Item * pItem1 = &item1;
+    const Item * pItem1 = &item1;
 
-    printItem(ptempItem);
+    printItem(pTempItem);
     printItem(pItem1);
 
-    readItem(ptempItem, pItem1);
+    readItem(pTempItem, pItem1);
+    printf("READ IN COMPLETED...");
+
+    printItem(pTempItem);
 
     free(pCans);
     free(ptr);
@@ -74,7 +74,6 @@ int main(void)
 
 void printItem(const Item *pItem)
 {
-    printf("==========================================================================\n");
     printf("\nItem: %s\n\nQuantity: %i\n\nPrice: $%.2f\n\nTotal: $%.2f\n\n", pItem->itemName, pItem->quantity, pItem->price, pItem->quantity * pItem -> price);
 }
 

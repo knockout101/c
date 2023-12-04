@@ -1,0 +1,40 @@
+- the fgetc() function reads a character from a text file that has been opened for reading
+
+- takes a file pointer as its only argument and returns the character read as type int
+
+int mchar = fgetc(pfile);
+
+- the mchar is type int because EOF will be returned if the end of the file has been reached
+
+- the function getc(), which is equivalent to fgetc(), is also available
+    - requires an argument of type FILE* and returns the character reaad as type int
+    - virtually identical to fgetc()
+    - only difference between them is that getc() my be implemented as a macro, whereas fgetc() is a function
+
+- you can read the contents of a file again when necessary
+    - the rewind() function positions the file that is specified by the file pointer argument at the beginning
+
+rewind(pfile);
+
+#include <stdio.h>
+
+int main()
+{
+    FILE *fp;
+    int c;
+
+    fp = fopen("file.txt", "r");
+
+    if (fp == NULL)
+    {
+        perror("Error in opening file");
+        return (-1);
+    }
+
+    while ((c = fgetc(fp)) != EOF)
+        printf(%c, c);
+    
+    fclose(fp);
+    fp = NULL;
+    return 0;
+}
