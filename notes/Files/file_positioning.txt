@@ -1,0 +1,132 @@
+- various functions to access data in random sequence
+
+- two aspects
+    - finding where you are
+    - moving to a given position
+
+- you have two functions to tell you where yo uare in a file
+    - ftell()
+    - fgetpos()
+
+long ftell(FILE *pfile);
+
+- accepts a file pointer adn returns a long integer that specifies the current position in the file
+
+long fpos = ftell(pfile);
+
+- the fpos variable now holds the current position in the file and you can use this to return to this position at any subsequent time
+    - value is the offset in bytes from the beginning of the file
+
+FILE *fp;
+int len;
+
+fp = fopen("file.txt", "r");
+if (fp == NULL)
+{
+    perror("Error opening file");
+    return -1;
+}
+fseek(fp, 0, SEEK_END);
+
+len = ftell(fp);
+fclose(fp);
+
+printf("Total size of file.txt = %d bytes\n", len);
+
+intfgetpos(FILE *pfile, fpos_t * position);
+
+- first para is a file pointer
+- the second is a pointer to a type that is defined in stdio.happy
+    - fpos_t is a type that is able to record every position within a file
+
+- the fgetpos() function is designed to be used with the positioning function fsetpos()
+
+- the fgetpos() function stores the current position and file state information for the file in position and returns 0 if the operation is successful
+    - returns a nonero integer value for failure
+
+fpos_t here;
+fgetpos(pfile, &here);
+
+- the above records the current file position in the variable here
+- you must declare a variable of type fpos_t
+    - you cannot decalre a pointer of type fpos_t * because there will not be any memory allocated to store the position data
+
+FILE *fp;
+fpos_t position;
+
+fp = fopen("file.txt", "w+");
+fgetpos(fp, &position);
+fputs("Hello, World!, fp);
+
+fclose(fp);
+
+- as a completement to ftell(), you ahve the fseek() function
+
+int fseek(FILE *pfile, long offset, int origin);
+
+- 1st is a pointer to the file
+- 2nd and 3rd define where you want to go in the file
+    - 2nd is an offset from a reference point specified by the third parameter
+    - reference point can be one of the three values that are specified by the predefined names
+        - SEEK_SET - defines the beginning of the file
+        - SEEK_CUR - defines the current position in the file
+        - SEEK_END - defines the end of the file
+    
+- for text mode file, the second argument must be a value returned by ftell()
+
+- 3rd for text mode must be SEEK_SET
+    - for text files, all operations with fseek() are performed with reference to the beginning of the file
+    - for binary files, the offset argument is simply a relative byte count
+        - can therefore supply positive or negative values for the offset when the reference point is specified as SEEK_CUR
+
+#include <stdio.h>
+
+int main(void)
+{
+    FILE *fp;                                                                                                                                                       
+
+    fp = fopen("file.txt", "w+");
+    fputs("This is Jason", fp);
+
+    fseek(fp, 7, SEEK_SET);
+    fputs("Hello how are you", fp);
+    fclose(fp);
+
+    return 0;
+}
+
+fsetpos()
+
+int fsetpos(FILE *pfile, const fpos_t *position);
+
+- 1st paramenter is a pointer to the open file
+- second is a pointer of the fpos_t type
+    - the position that is stored at the address was obtained by calling fgetpos()
+
+fsetpos(pfile, &here);
+
+- the variable here was previously set by a call to fgetpos()
+
+- the fsetpos() returns a nonzero value on error or 0 when it succeeds
+
+- this function is deisgned to work with a value that is returned by fgetpos()
+    - you can only use it to get to a place in a file that you have been before
+    - fseek() allows you to go to any position just by specifying the appropriate offset
+
+#include <stdio.h>
+
+int main()
+{
+    FILE *fp;
+    fpos_t position;
+
+    fp = fopen("file.txt", "w+");
+    fgetpos(fp, &position);
+    fputs("Hello, World!", fp);
+
+    fsetpos(fp, &position);
+    fputs("This is going to override previous content", fp);
+    fclose(fp);
+
+    return 0;
+}
