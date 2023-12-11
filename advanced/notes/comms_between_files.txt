@@ -1,0 +1,44 @@
+Communication between files 
+
+- methods can be used so that the modules contained in seperate files can effectively communicate
+
+- if a function from one file needs to call a function contained inside another file
+    - a function call can be made in the normal fashion
+        - arguments can be passed and returned in the usual way
+    - in the file that calls the function, you should always make certain to include a prototype declaration
+        - so that the compiler knows the functions argument types adn the type of the return value
+
+- it is important to remember that even though more than one module might be specified to the compiler at the same time on the command line
+    - the compiler compiles each module independently
+        - means that no knowledge about structure definitions, function return types, or function argument types is shared across module compilations by the compiler
+
+- its up to you to ensure that the compiler has sufficient information about such things to correctly compile each module
+
+- functions contained in seperate files can communicate through external variables
+    - an extension to the concept of the global variable 
+
+- an external variable is one whose value can be accessed and changed by another module (file)
+
+- inside the module that wants to access the external variable
+    - the variable data type is preceded with the keyword extern in the declaration
+        - tells the compiler that a globally defined variable from another file is to be accessed
+
+- suppose you want to define an int variable called moveNumber
+    - you want to access the value and possibly modify it within a function contained in another file
+
+int moveNumber = 0;
+
+- declare the above, at the beginning of your program, outside of any function
+    - its value could be referenced by any function within that program 
+    - moveNumber is defined as a global variable
+
+- this same definition of the variable moveNumber also makes its value accessible by functions
+
+extern int moveNumber;
+
+- this same definition of the variable moveNumbewr also makes it value accessible by functions contained in other files
+
+- the statement defines the variable moveNumber not just as a global variable, but also as an external global variable
+
+- to reference the value of an external global variable from another module 
+    - you must declare the variable to be accessed, preceding the declaration with the keyword externf
