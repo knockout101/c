@@ -1,0 +1,36 @@
+new features
+
+- macros with a variable number of arguments
+
+- C99 allows the use of sophisticated numbers (complex.h)
+    - _Complex
+        - used to declare complex floating type variables to store mathematical complex numbers
+    - _Imaginary
+        - declare imaginary floating type variables store mathematical imaginary numbers
+    
+- designated initializers
+    - allow you to initialize the elements of an array, union, or struct explicitly by subscript or name
+
+- restricted pointers
+    - a type qualifier that can be used only for pointers
+
+- new comment techniques
+    - // comments
+
+- inline functions
+    - supplies a hint for the compiler to perform optimizations
+
+- variable length arrays
+    - arrays dimension has to be declared in C89
+    - C99 permits declaration of array dimensions using integer variables or any valid integer expressions
+
+- flexible array members
+    - allows us to declare an array of unspecified length as the last member of a struct
+
+- declaration of variables
+    - it is now legal to declare variables it at any point of the program within the curly braces of main() function
+    - very obvious in loops
+
+- required in C89 (all variables be declared at the start of a block)
+- new in C99 (varialbes can be declared anywhere)
+for (int i = 0; i < 10; i++)

@@ -1,0 +1,15 @@
+Organizing Large Programs
+
+- Divide problem into multiple sub problems
+
+- modulization
+
+- Allows abstraction and re-usability of code 
+
+- files contain all functions from a related group
+
+- when changes are made to a file, only that file need be re-compiled to rebuild the program
+
+- if you check any Open-Source project you can see how large the program is "decentralized" into many numbers of sub-modules
+    - each sub-module contributes to a specific critical function of the program
+    

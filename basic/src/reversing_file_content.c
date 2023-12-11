@@ -18,17 +18,20 @@ int main(void)
 
     fp = fopen("file.txt", "r+");
 
+    fseek(fp, 0, SEEK_SET);
+
     long start = ftell(fp);
     long interval = 0;
 
     fseek(fp, 0, SEEK_END);
     
-    for (;ftell(fp) != start; interval++)
+    for(;ftell(fp) != start; ++interval)
     {
-        printf("%l", ftell(fp));
-        fseek(fp, interval, SEEK_END);
+        printf("%c", fgetc(fp));
+        fseek(fp, -interval, SEEK_END);
     }
-
+    printf("%c", fgetc(fp));
+    
     fclose(fp);
     fp = NULL;
 

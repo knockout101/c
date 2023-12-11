@@ -1,0 +1,47 @@
+The C11 standard
+
+- features added to C11 were for more advanced concept
+    - multithreading support
+    - safer standard libraries
+    - better compliance with other industry standards
+
+- the standard also attempts to fix some issues presented in C99
+    - some mandatory features are optional (variable length arrays and complex types)
+
+- also focuses on better compatibility with C++ as much as possible
+
+- minimal C11 in this course
+
+- C11 standardizes many features that have already been available in common contemporary implementations
+
+- defines a memory model that better suits multithreading
+
+- fixes problems iwth the C99 standard
+    - some of its mandatory features proved difficult to implement in some platforms
+
+- focuses on security (such as the string manipulation functions and input/output)
+    - a new set of safer standard functions that aim to replace the traditional unsafe functions
+        - bounds checking functions
+            - that begin or end with _s(strcat_s, strcpy_s, etc)
+    - removal of the gets function
+    - optional to the standard
+
+- supports for anonymous structs or unions
+    - has neither a tag name nor a typedef name
+    - useful when unions and structures are nested
+
+- statis assertions
+    - evaluated during stranlation at a later phasee than #if and #error
+    - let you catch errors that are impossible to detect during the preprocessing phasee
+
+- no-return functions
+    - declares a function that does not return
+    - suppresses compiler warnings on a function that doesn't return
+    - enables certain optimizations that ere not allowed only on functions that don't return
+
+- the biggest change in C11 is its standaradized multithreading support
+
+- the new C11 header file <threads.h>
+    - declares functions for creating and managing threads, mutexes, condition variables
+
+- however, it is not widely supported on windows and thus we will be learning about <pthread.h> instead (posix compliant)
