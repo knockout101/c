@@ -1,0 +1,43 @@
+- preprocessor directive #defire
+    - can be preceded by spaces or tabs
+    
+- preprocessor directives run until the first newline follow the #
+    - a directive is limited to one line in length
+    - the combination backslash/newline is deleted before preprocessing begins
+        - you can spread the directive over several physical lines
+            - these lines still constitute a single logical line
+
+- convention to put define statements in beginning of the file but can be found anywhere
+    - can come from inside an include file that can be quickly referenced and shared by more than one souce file
+
+- by convention, #define names are defined using only uppercase letters and underscores
+
+#define YES 1
+
+- defines yes = 1
+
+- yes will be replaced with 1 like search and replace with a text editor
+    - runs before compiler
+
+- no equal sign and no semi colon, its not a variable
+
+gameOver = YES;
+
+same as gameOver = 1;
+
+- defined name is not a variable it is a CONSTANT
+
+#define TWO_PI 2.0*3.1415
+
+- you can use defined name anywhere in the program
+
+- can replace circumference function with this:
+
+return TWO_PI*r;
+
+- NULL is a defined name on your system inside header <stddef.h>
+
+- by including a definition such as 
+# define NULL 0
+
+- in a program, you can then write more readable statements

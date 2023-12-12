@@ -1,0 +1,42 @@
+External Variables
+
+- the extern storage class simply tells us that avariable is defined elsewhere
+    - not within the same block where it is used
+
+- an extern variable is a global variable intitialized with a legal value where it is declared in order to be used elsewhere
+    - an extension to the concept of the global variable
+
+- the main purpose of using extern variables is that they can be accessed between two different files which are part of a large program
+    - functions contained in seperate files can communicate through external variables 
+
+- the extern storage class is used to give a reference of a global variable that is visible to ALL the program files 
+
+- inside the module that wants to access the external variable
+    - the variable data type is preceded with extern in declaration
+
+int moveNumber = 0;
+
+- declare the variable outside of any functions and at the top of the file to create the global variable
+    - its value could be referenced by any function within that program
+    - global variable
+
+- to reference the value of an external global variable from another module
+    - you must declare extern 
+
+extern int moveNumber;
+
+- the value can now be accessed adn modified by the module in which the preceding declaration appears
+
+- other modules can also access the value of moveNumber by incorportating a similar extern declaration in the file
+
+- variable has to be defined in some place among your source files
+
+- when a function is defined, it can be declared to be extern explicitly 
+
+- an extern function can be called from a file where it is not defined 
+    - where it does not need to be defined in a header file 
+
+extern double foo(double x){ ...}
+
+- the definition of the foo function effectively becomes global to any file in the program
+    - can be called from outside the file

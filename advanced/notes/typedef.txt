@@ -1,0 +1,39 @@
+- keyword to create name for existing data type
+
+typedef int Counter;
+
+- defines the name Counter to be equivalent to the C data type int
+
+- variables can subsequently be decalred to be of type Counter
+
+Counter j, n;
+
+- compiler treats the declaration of the variables j and n as normal ints
+
+- advantage is the added readability and intentions of variables
+
+- another advantage is maintainability
+    - analogous to using variables instead of explicit numbers
+
+- you can use typedef to make program more portable
+
+- not new data type but a new name for existing data types
+
+Best Practice
+
+- Do not bother using typedefs for structs
+    - just save using word struct, which is a clue you shouldnt hide anyways
+
+- use typedef for types that combine arrays, structs, pointers, or functions
+
+- use typedefs for portable types
+    - when you need a type that's at least 20-bits, make it a typedef
+        - when you port the code to a different platform, select the right type, short, int, long
+            - making the change in just the typedef, rather than in every declaration
+
+- use typedefs for casting
+    - a typedef can provide a simple name for complicated type casting
+
+typedef int (*ptr_to_int_fun)(void);
+char *p
+.... = (ptr_to_int_fun)p;

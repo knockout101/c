@@ -1,0 +1,96 @@
+Heap and Stack Memory Allocation
+
+- three forms of Memory
+    - static
+    - Stack
+    - Heap
+
+- static memory persists throughout the entire life of the program
+    - usually used to store things like global variables, or variables created with the static clause
+
+- the stack is a special region of memory that stores temporary variables
+    - used to store variables that are created inside of a function
+    - easier to keep track of because the memory is only locally available in the function
+
+- the stack is "LIFO" (last in first out) data structure that is managed and optimized by the CPU
+    - a linear data structure
+    - there is no need to manage the memory yourself
+        - variables are allocated and freed automatically
+
+- the stack grows and shrinks as variables are created and destroyed inside a function
+    - every time a function declares a new variable, it is "pushed" onto the stack
+    - every time a function exits, all of the variables pushed onto the stack by that function, are freed (deleted)
+    - once a stack variable is freed, that region of memory becomes available for other stack variables
+
+- there is a limit on the size of variables that cn be stored on the stack 
+
+- if a program tries to put too much information on the stack, stack overflow will occur
+    - happens when all the memory in the stack ahs been allocated, and further allocations begin overflowing into other sections of memory 
+    - stack overflow also occurs in situations where recursion is incorrectly used 
+
+- stack memory is divided into successive frames where each time a function is called, it allocates itself a fresh stack frame
+
+- when a function exits, all of its variables are popped off of the stack 
+    - thus stack variables are local in nature 
+
+- stack variables only exist while the function that created them is running 
+
+- a common bug is attempting to access a variable that was created on the stack inside some function, from a place in your program outside of that function (i.e. after that function has exited)
+
+Heap 
+
+- opposite of the stack
+
+- a hierarchical data structure 
+
+- large pool of memory that can be used dynamically
+
+- memory is not automatically managed 
+    - more free-floating region of memory 
+
+- the heap is managed by the programmer 
+    - the memory is accessed through the use of pointers 
+        - you have to explicitly allocate (malloc) and deallocate (free) the memory 
+        - failure to free will result in memory leaks
+
+- Generally no restrictions on heap or variables it stores 
+    - other than the physical size of memory in the machine
+
+- variables created on the heap are accessible anywhere in the program
+    - essentially global in scope
+
+- heap memory is slightly slower to be read from and written to 
+
+- use the heap
+    - when allocating a large block of memory 
+        - large array
+        - large struct 
+    - when you need to keep that variable around a long time
+        - a global 
+    - when you need variables like arrays and structs that can change size dynamically
+        - arrays that can grow or shrink as needed
+    
+- use the stack 
+    - when you are using relatively small variables that only need to persist as long as the function using them is alive
+        - easier and faster
+
+- Stack
+    - very fast access 
+    - do not have to free()
+    - space is managed efficiently by CPU 
+        - memory is allocated in a contiguous block 
+        - memory will not become fragmented 
+    - local variables only 
+    - limit on the size of the stack 
+    - variables cannot be resized
+
+- Heap 
+    - variables can be accessed globally
+    - no limit on memory size 
+    - (relatively) slower access 
+    - you are responsible for managing the memory 
+    - no guarantee efficient use of space 
+        - memory is allocated in any random order
+        - memory may become fragmented over time as blocks of memory are allocated, then freed
+    - variables can be resized using realloc()
+    

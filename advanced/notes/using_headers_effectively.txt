@@ -1,0 +1,8 @@
+- includes files are great for grouping all your commonly used definitions inside a file
+
+- standardizing functions with header files makes it easier for multiple programmers to work on a project together
+
+- by centralizing the definition of common data strucutres into one or more include files 
+    - changing functions happens in one place
+    - eliminate two modules using two different definitions for the same data
+

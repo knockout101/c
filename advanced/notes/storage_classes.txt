@@ -1,0 +1,44 @@
+Auto Variables 
+
+- storage classes are used to describe the features of a variable/function 
+    - include the scope, visibility and life-time
+    - help us to trace the existence of a particular variable during the runtime of a program 
+
+- the lifetime of a variable is the time period during which variable exist in computer memory 
+    - some exist briefly, some are repeatedly created and destroyed, and others exist for the entire execution of a program 
+
+- the lifetime of a variable is the time period during which variable exist in computer memory 
+    - some exist briefly, some are repeatedly created and destroyed, and others exist for the extire execution of a program 
+
+- the scope of the variable is where the variable can be referenced in a program
+    - some can be referenced throughout a program, others from only portions of a program 
+
+- a variable's visibility or linkage, determines for a multiple-source-file program whether the identifier is known only in the current source file or in any source file iwth proper declarations
+
+- storage classes
+    - auto 
+    - register 
+    - extern 
+    - static 
+
+- two types of storage durations
+    - automatic 
+    - static 
+
+- Keyword auto is used to declare variables of automatic storage duration
+    - created when tyhe block in which they are defined is entered
+    - exist while the block is active 
+    - destroyed when the block is exited 
+
+- all local variables have automatic storage duration by default
+
+- the keyword auto is self used as it is assumed by C compiler by default by any variable defined inside a function
+
+- C++ repurposes the auto keyword so to help compatibility do not use the auto keyword
+
+- you might use auto to show that you have overwritten an external variable definition or to show that it is important not to change to another storage class
+
+- storage class precedes the type of the variable
+
+auto double x, y;
+

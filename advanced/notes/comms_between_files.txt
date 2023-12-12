@@ -41,4 +41,17 @@ extern int moveNumber;
 - the statement defines the variable moveNumber not just as a global variable, but also as an external global variable
 
 - to reference the value of an external global variable from another module 
-    - you must declare the variable to be accessed, preceding the declaration with the keyword externf
+    - you must declare the variable to be accessed, preceding the declaration with the keyword extern 
+
+extern int moveNumber;
+
+- other modules can also access the value of moveNumber by incorporating a similar extern declaration in the file
+
+- differences between static and extern is if you want to make a global variable that is not external you would use static
+
+static int moveNumber = 0;
+
+- makes the value of the variable accessible from any subsequent point in the file in which the definition appears but not from functions contained in other files
+
+- the static declaration more accurately reflects the variable's usage
+    - no conflicts can be created by two modules that unknowinglyt both use different external global variables of the same name
