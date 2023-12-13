@@ -1,0 +1,17 @@
+Variable Length Arrays LVA
+
+- once created its size cannot be changed
+
+- the real advantage is being able initiate the array with a variable because its easier to build programs with this kind of abstraction
+
+- if compiler does not support VLA, the symbol __STDC_NO_VLA__ must be defined as 1
+
+- you check for it like this:
+
+#ifdef __STDC_NO_VLA__
+    printf("Variable length arrays are not supported.\n");
+    exit(1);
+#endif
+
+- best to avoid variable length arrays when unnecessary
+    - if needed to dynamically allocate and even reallocate storage buffers, you can calways use pointers
