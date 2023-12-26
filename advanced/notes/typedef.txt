@@ -37,3 +37,4 @@ Best Practice
 typedef int (*ptr_to_int_fun)(void);
 char *p
 .... = (ptr_to_int_fun)p;
+

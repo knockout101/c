@@ -1,0 +1,76 @@
+Binary Numbers and Bits
+
+- Binary numbers 1/0
+
+- each position for a binary number has a value
+
+- for each digit, multiple the digit by its position value 
+
+- add up all of the products to get the final result 
+
+- in general, the position values in a binary number are the powers of two 
+
+- Bits 
+
+- a byte consits of eight smaller units called bits 
+
+- each 1 and 0 in a binary number represents 1 bit 
+    - 1 = turned on 
+    - 0 = turned off 
+
+- the rightmost bit of a byte is known as the least significant or low-order bit, whereas the leftmost bit is known as the most significant or high-order bit 
+
+- the advantage of grouping bits into bytes, words, and so on is that it makes them easier to handle 
+
+- changing a bit's value to 1 is referred to as setting the bit 
+
+- changing a bits value to 0 is reffered to as resetting a bit
+
+- basic C data types consist of the following numbers of bits:
+
+    - char - 8 - -128 to 127
+    - short int - 16 - -32,768 to 32, 767 
+    - long int - 32 - -2.147b to 2.147b 
+
+- representation of negative numbers is handled slightly differently
+
+- computers represent such numbers using a "twos complement" notation
+    - the leftmost bit represents the sign bit 
+        - 1 = negative 
+        - 0 = positive 
+- the remaining bits represent the value of the number 
+
+- in twos complement notaetion, the value -1 is represented by all bits being equal to 1 
+
+- a convenient way to convert a negative number from decimal to binary is to 
+    - first add 1 to the value 
+    - express the absolute value of the result in binary 
+    - "complement" all the bits 
+        - change all 1s to 0s and 0s to 1s 
+    
+- to convert -5 to binary, 1 is added, which gives -4 
+- 4 expressed in binary is 000000100
+- complementing the bits produces 111111011
+
+- to convert a negative number from binary back to decimal
+    - first complement all of the bits 
+    - convert the result to decimal 
+    - change the sign of the result 
+    - then subtract 1
+
+- to convert a negative number from binary back to decimal 
+    - first complement all of the bits 
+    - convert the result to decimal 
+    - change the sign of the result 
+    - then subtract
+
+- you can perform all sorts of sophisticated operations on bits 
+- you can manipulate the individual bits in a variable 
+
+- a hardware device is often controlled by sending it a byte or two in which each bit has a particular meaning 
+
+- operating system information about files often is stored by using particular bits to indicate particular items 
+
+- many compression and encryption operations manipulate individual bits
+
+- C's ability to provide high-level language facilities while also being able to work at a level typically reserved for assymbly language makes it a preferred language for writing device drivers and embedded code 

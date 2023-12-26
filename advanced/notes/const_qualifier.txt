@@ -1,0 +1,29 @@
+Overview
+
+- helps with optimization
+
+- const, volatile, and restrict
+
+- C90 added two new type qualifiers
+    - constancy and volatility
+
+- C99 standard added a third qualifier
+    - restrict 
+        - designed to facilitate compiler optimizations 
+
+- type qualifiers are also Idempotent (added in C99)
+    - means that you can use the same qualifier more than once in a declaration, and the superfluous ones are ignored
+
+- one of the motivations for the const attribute in the language is that it allows the compiler to place your const variables into read-only memory 
+    - optimizations 
+
+- when using extern to define constants from other files you must include const within extern keyword for explicity
+
+extern const double PI;
+
+- #define is not scope controlled whereas const is scope controlled
+    - #define can be used in anywhere in the program or in other files to by including the related header file 
+    - a constant can be declared inside a function (function/scope)
+
+- another advantage of using a const over a #define macro is that a const variable provides for type checking by the compiler
+

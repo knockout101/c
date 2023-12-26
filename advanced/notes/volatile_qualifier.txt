@@ -1,0 +1,42 @@
+- volatile type qualifier tells the compiler explicity that the specified variable will change its value 
+
+- it is provided so that a program can tell the compiler to suppress various kinds of optimizations 
+    - prevents the compiler from optimizing away seemingly redundant assigments to a variable 
+    - prevents the compiler from repeated examination of a variable without its value seemingly changing
+
+- essentially prevents the compiler from "caching" variables
+
+- the reason for having this type qualifier is mainly because of the problems that are encourtered in real-time or embedded systems programming
+    - programs that have a lot of threading
+    - programs where resources are scarce   // embedded programming
+
+- a variable should be decalred volatile whenver its value could change unexpectedly
+
+- the optimizaer must be careful to reload the variable everytime it is used instead of holding a copy in a register
+
+- only three types of variables should use volatile
+    - memory-mapped peripheral registers
+    - global variables (non stack variables) modified by an interrupt service routine
+    - global variables accessed by multiple tasks within a multi-threaded application
+
+- the syntax is the same as for const
+
+volatile int loc1; // loc1 is a volatile location
+volatile int* ploc; // ploc points to a volatile location 
+
+Example:
+
+val1 = x;
+
+/* some code... */
+
+val2 = x;
+
+- a smart (optimizing) compiler might notice that you use x twice without changing its value
+    - would temporarily store the x value in a register 
+    - when x is needed for val2, it can save time by reading the value from a register instead of from the original memory location
+
+- this opt is not desired if x is changed between the two statements by some other agency 
+    - you would use the volatile keyword to ensure that the compiler does not optimize and instead has a stored value for each variable 
+
+- if the volatile keyword is not used in the declaration, the compiler can assume that a value has not changed etween uses, and it can then attempt to optimize the code

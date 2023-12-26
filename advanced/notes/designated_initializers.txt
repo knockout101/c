@@ -1,0 +1,23 @@
+- designated initializers alow you to specify which elements of an array, structure or union are to be initialized by the values following an array index or a field by name (struct and union)
+
+- the C90 stand required the elemtns of an initializaer to appear in a fixed order
+    - the same as the order of hte elemetns in the array or structure being initialized
+
+- C99 standard allows intialized the elemtns in random order
+    - specifiying the array indices or structure field names they apply to 
+
+- can be verty useful if you have a struct that contains a large number of fields and you initially just want to set a few of them 
+
+- also a good way of making your code more readable
+
+- to specify an array index, write '[index] = ' or '[index]' before the elemetn value
+    - the termin in square brackets specifies which element of the array is to be initialized by the value of the term after the = sign 
+    - unspecified elements are default initialized, which means zeros are defined
+
+int a[6] = {[4] = 29, [2] = 15}; or 
+int a[6] = {[4]29, [2]15};
+
+is equivalent to
+
+int a[6] = {0, 0, 15, 0, 29, 0};
+

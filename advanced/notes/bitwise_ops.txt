@@ -1,0 +1,45 @@
+- bit manipulation is the act of algorithmically manipulating bits or other pieces of data shorter than a word
+
+- computer programming tasks that require bit manipulation inlcude
+    - low-level device control 
+    - error detection 
+    - correction algorithms 
+    - data compression 
+    - encryption algorithms 
+    - optimization 
+
+- a bitwise operation operates on one or more binary numbers at the level of their individual bits 
+    - used to manipulate values for comparisons and calculations
+    - substantially faster than division, several times faster than multiplication, and sometimes significantly faster than addition
+
+- bitwise logical operators
+
+- C offers bitwise logical operators and shift operators 
+    - operate on the bits in integer values 
+
+& - binary AND operator copies a bit to the result if it exits in both operands 
+| - binary OR operator copies a bit if it exists in either operand 
+^ - binary XOR operator copies the bit if it is set in one operand but not both 
+~ - binary ones complement operator is unary and has the effect of 'flipping' bits 
+
+- they operator on each bit independently of the bit to the left or right 
+    - do not confuse them with the regular logical operators (&&, ||, and !) which operate on values
+
+- all of the logical operators listed in the table (with the exception of the ones complement operator ~) are binary operators
+    - take two operands
+
+- bit operations can be performed on any type of integer value in C 
+    - int, short, long, long long, and signed or unsigned 
+    - and on characters, but cannot be performed on floating-point values 
+
+- a bit mask is data that is used for bitwise operations 
+    - using a mask, multiple bits in a byte can be set either on, off, or inverted from on to off (or vice versa) in a single bitwise operation 
+
+- one major use of the bitwise AND, &, and the bitwise OR, |, is in operations to test and set individual bits in an integer variable
+    - can use individual bits to store data that involve one of two choices
+
+- you could use a single integer variable to store several characteristics of a person
+    - store whether the person is male or female with one bit 
+    - use three other bits to specify whether the person can speak French, German, or Italian
+    - another bit to record whether the person's salary is $50k or more 
+    - in just four bits you have a substantial set of data recorded

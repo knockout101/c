@@ -1,0 +1,75 @@
+Complex numbers
+
+- Multiplications
+    - the product of the complex numbers a + bi and c + di is (ac - bd) + (ad + bc)i 
+
+- you can declare a variable to store complex numbers like this 
+
+double _Complex z1; // Real and imaginary parts are type double
+
+- complex.h header defines complex as being equivalent to _Complex
+    - also defines many other functions adn macros for working with complex numbers 
+
+- float _Complex
+    - stores a complex number with real adn imaginary parts as type float
+
+- double _Complex 
+    - same but double
+
+- long double _Complex
+
+- float _Imaginary
+    - stores an imaginary number as type float 
+
+- double _Imaginary
+
+- long double _Imaginary 
+
+- using the _Imaginary keyword defines variables that store purely imaginary numbers
+    - there is no real component
+
+- the complex.h defines imaginary as a more readable equivalent of _Imaginary
+
+double imaginary ix = 2.4*I;
+
+- casting an imaginary value to a complex type produces a complex number with a zero real part and a complex part the same as the imaginary number
+
+- casting a value of an imaginary type to a real type other than _Bool results in 0
+
+- casting a value of an imaginary type to type _Bool results in 0 for a zer oimaginaryt value and 1 otherwise
+
+- creal() function returns the real part
+
+- cimag() function returns the imaginary parts
+
+double real_part = creal(z1);
+double imag_part = cimag(z1);
+
+- you append an f to these functions when working with float complex values (crealf() and cimagf())
+
+- you append a lowercase l when you are working with ldouble complex values (creall() and cimagl())
+
+- conj() function returns the complex conjugate of its double complex argument
+
+- the conjf() and conjl() returns the complex conjugate for the other two complex types
+
+- you can write arithmetic expressions involving complex and imaginary values using the arithmetic operators +, -, *, and /
+
+- the <complex.h> header also defines several math functions (cpow)
+
+- you can also use the operations !, ++, --, &&, ||, ==, != and unary & with complex numbers
+
+Creating complex numbers
+
+const float complex _Complex_I
+
+- shortername from complex.h 
+
+const float complex I 
+
+- the above(I) can causes problems if you want to use the identifier I for something elemetns
+    - #include <complex.h>
+    - #undef I 
+
+    
+

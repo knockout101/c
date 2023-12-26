@@ -1,0 +1,39 @@
+- C99 standard
+
+- when using a structure, we can decalre an array without a dimension and whose size is flexible in nature
+    - a flexible array member's size is variable (can be changed be at runtime)
+
+struct s 
+{
+    int arraySize;
+    int array[];
+}; // end struct s 
+
+- a flexible array member is declared by  [] brackets
+
+- can only be declared as the last member of a struct 
+
+- each struct can contain at most one flexible array member 
+
+- a flexible array cannot be the only member of a struct 
+    - the struct must also have one of more fixed members 
+
+- any struct containing a flexible array member cannot be a member of another struct 
+
+- a struct with a flexible array member cannot be statically initialized 
+    - it must be allocated dynamically 
+    - you cannot fix the size of the flexible array member at compile time
+
+- not very portable but still very useful 
+
+- some argue that you can djust declare an array of size 0 or 1 and reallocatee 
+    - in previous standards of C, it was common to decalre a zero-sized array member instead of a flexible array member 
+    - using non-standardized constructs to support flexible array members can yield undefined behavior
+        - bad practice and any undefined-behavior should be avoided
+
+- a struct with a flexible array member reduced the number of allocations for it by 1/2
+    - instead of 2 allocatons for one struct object you need just 1 
+        - meaning less effort and less memory occupied
+        - you save the storage for one additional pointer 
+
+- if you have to allocate a large number of isntances, you can measurably improve the runtime and memory usage of your program (by a constant factor)
