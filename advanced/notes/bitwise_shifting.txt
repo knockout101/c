@@ -1,0 +1,16 @@
+- C also has left-shift (<<) and right-shift (>>) operators 
+
+- for each respective operator, vacated bits are set to 0 
+
+- for the right-shift operator, the vacated bits are set to 0 if the value is unsigned 
+
+<< - binary left shift operator. The left operands value is moved left by the number of bits specified byt the right operand 
+>> - binary right shift operator
+
+undefined results
+
+- if you shift a value to the left or right by an amount that is greater than or equal to the number of bits in the size of the data item you will get a undefined result 
+    - on a machine that represents integers in 32 bits 
+        - shifting an integer to the left or right by 32 or more bits is not guaranteed to produce a defined result in your program 
+
+- also if you shift a value by a negative amount, the result is also undefined 

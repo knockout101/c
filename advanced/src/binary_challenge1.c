@@ -25,7 +25,7 @@ int decimal = 10;
 #include <math.h>
 #include <string.h>
 
-long long decimalToBinary(int decimal);
+void decimalToBinary(int decimal);
 int binaryToDecimal(long long binary);
 void reverseArray(int* array, const int elements);
 
@@ -36,10 +36,8 @@ int main(void)
     return 0;
 }
 
-long long decimalToBinary(int decimal)
+void decimalToBinary(int decimal)
 {
-    long long binaryNumb = 0;
-
     int temp = decimal, index = 0, rem[20];
     int* pRem = rem;
 
@@ -61,8 +59,6 @@ long long decimalToBinary(int decimal)
         }
         printf("%d", pRem[i]);
     }
-
-    return binaryNumb;
 }
 
 void reverseArray(int* array, const int elements)

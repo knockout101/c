@@ -2,13 +2,11 @@
 
 int main() 
 {
-    short int w1 = 25;
-    short int w2 = 77;
-    short int w3 = 0;
+    signed int w1 = 154;
+    signed int result = 0;
 
-    w3 = w1 & 3;
-
-    printf("%d\n", w3);
-
+    result = ~(w1);
+    printf("%d", result);
+    
     return 0;
 }
