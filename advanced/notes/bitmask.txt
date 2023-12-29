@@ -1,0 +1,93 @@
+- a bit mask is data that is used for bitwise operations 
+    - a bit pattern with some bits set to on (1) and some bits to off(0)
+
+- a mask can be used to set mutliple bits in a byte to either on, off or inverted from on to off using a single bitwise operator 
+
+- imagine you want to create a program that holds a state, which is based on mutliple values that are one(true) or zero(false)
+    - can store these values in different variables (booleans or integers)
+    - or instead use a single integer variable nad use each bit of its internal 32 bits to represent the different true nad false values 
+
+0000101
+
+- the first bit (right to left) is true, which represents the first variable 
+
+- 2nd is false, which represents the 2nd variable. The third true, and so on.
+
+- very efficiient way of storing data and has many usages 
+
+- you apply a mask to value to set or read the desired states of an integer variable 
+
+- to avoid information peeking around the edges, a bit mask should be at least as wide as the value its masking
+
+Using a bit mask with AND
+
+- AND operator is usually used with a mask 
+
+- supposed you are define the symbolic constant MASK as 2 (binary 0000010)
+    - only bit number 1 being nonzero 
+
+flags = flags & MASK;
+
+- the above would cause all the bits of flags (except bit 1) to be set to 0
+    - any bit combined with 0 using the & operator yields 0
+    - bit number 1 will be left unchanged 
+        - if the bit is 1, 1 & 1 is 1
+        - if the bit is 0, 0 & 1 is 0
+
+- we are "using a mask" because the zeros in the mask hide the corresponding bits in flags
+
+Turning Bits On (Setting bits) using OR
+
+- consider the MASK, which as bit 1 set to 1
+
+flags = flags | MASK;
+
+- sets bit number 1 in flags to 1 and leaves all the other bits unchanged 
+    - any bits combined with 0 by using the | op is itself 
+    - any bit combined with 1 by using the | operator is 1
+
+Turning bits off (clearing bits) using AND
+
+suppose you want to turn off bit 1 in the variable flags 
+    - MASK has only the 1 bit turned on 
+    - MASK is all 0s except for the bit 1 
+    - ~MASK is all 1s except for bit 1
+
+flags = flags & ~MASK;
+
+- a 1 combined with any bit using & is that bit 
+- the above leaves all the bits other than bit 1 unchanged 
+
+- a 0 combined with any bit using & is 0
+- bit 1 is set to 0 regardless of its original value 
+
+Toggling bits using XOR 
+
+- if b is a bit setting (1 or 0), then 1 ^ b is 0 if b is 1 and is 1 if b is 0
+- 0 ^ b is b, regardless of its value 
+
+- if you combine a value with a mask by using ^
+    - values corresponding to 1s in the mask are toggled 
+    - values corresponding to 0s in the mask are unaltered
+
+- to toggle bit 1 in flags 
+
+flags = flags ^ MASK;
+
+Checking the value of a bit 
+
+- suppose you want to check the value of a bit
+    - does flags have bit 1 set to 1?
+
+if (flags == MASK)
+    puts("Wow!"); // doesn't work right 
+
+- even if bit 1 in flags is set to 1, the other bit setting in flags can make the comparison untrue 
+
+- you must first mask the other bits in flags so that you compare only bit 1 of flags with MASK 
+
+if ((flags & MASK) == MASK)
+    puts("Wow!");
+
+
+

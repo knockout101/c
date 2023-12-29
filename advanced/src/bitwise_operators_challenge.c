@@ -19,19 +19,22 @@ int main(void)
 {
     int userInput1, userInput2;
 
-    char temp[32] = NULL;
+    char temp[32];
     
     printf("Please enter two numbers seperated by a space: ");
-    scanf("%d %d", userInput1, userInput2);
+    scanf("%d %d", &userInput1, &userInput2);
 
-    printf("~(%d): %d", userInput1, ~(userInput1));
-    printf("~(%d): %d", userInput2, ~(userInput2));
+    printf("\nuserInput1: %d\n", userInput1);
+    printf("\nuserInput2: %d\n\n", userInput2);
 
-    printf("%d & %d: %d", userInput1, userInput2, decimalToBinary(userInput1 & userInput2, temp));
-    printf("%d | %d: %d", userInput1, userInput2, decimalToBinary(userInput1 | userInput2, temp));
-    printf("%d ^ %d: %d", userInput1, userInput2, decimalToBinary(userInput1 ^ userInput2, temp));
-    printf("%d >> 2: %d", userInput1, decimalToBinary(userInput1 >> 2, temp));
-    printf("%d << 2: %d", userInput1, decimalToBinary(userInput1 << 2, temp));
+    printf("~(%d): %d\n\n", userInput1, ~(userInput1));
+    printf("~(%d): %d\n\n", userInput2, ~(userInput2));
+
+    printf("%d & %d: %s\n\n", userInput1, userInput2, decimalToBinary(userInput1 & userInput2, temp));
+    printf("%d | %d: %s\n\n", userInput1, userInput2, decimalToBinary(userInput1 | userInput2, temp));
+    printf("%d ^ %d: %s\n\n", userInput1, userInput2, decimalToBinary(userInput1 ^ userInput2, temp));
+    printf("%d >> 2: %s\n\n", userInput1, decimalToBinary(userInput1 >> 2, temp));
+    printf("%d << 2: %s\n\n", userInput1, decimalToBinary(userInput1 << 2, temp));
 
     return 0;
 }
