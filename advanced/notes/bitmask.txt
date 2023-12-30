@@ -38,7 +38,7 @@ flags = flags & MASK;
 
 Turning Bits On (Setting bits) using OR
 
-- consider the MASK, which as bit 1 set to 1
+- consider the MASK, which has bit 1 set to 1
 
 flags = flags | MASK;
 

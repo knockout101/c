@@ -72,4 +72,31 @@ packed_data = (packed_data & ~(0xff << 18)) | ((n & 0xff) << 18);
 
 - you can see how complex the above expression is for accomplishing the relatively simple task of setting the bits in the type field to a specified value 
 
+- extracting a value from one of these fields 
+    - field can be shifted into the low-order bits of the word and then AND'ed with a mask of the appropriate bit length 
+
+- to extract the type field of packed_data and assign it to n 
+
+n = (packed_data >> 18) & 0xff;
+
+- you can use an unsigned long value to represent color values 
+    - the low-order byte for read 
+    - next byte for green
+    - third for blue 
+
+- you store the intensity of each color in its own unsigned char varialbe and use a bit mask to set/read 
+
+#define BYTE_MASK 0xff
+unsigned long color = 0x002a162f;
+unsigned char blue, green, red;
+red = color & BYTE_MASK;
+green = (color >> 8) & BYTE_MASK;
+blue = (color >> 16) & BYTE_MASK;
+
+- the code uses the right-shift op to move the 8-bit color value to the low-order byte 
+    - then uses the mask technique to assign the low-order byte to the desired variable
+
+- long color variable can be used to calculate three other colors (w/o using aditional variables)
+
+
 
