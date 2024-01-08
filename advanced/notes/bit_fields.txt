@@ -1,0 +1,24 @@
+Bit Fields 
+
+- you can pack info into bits of a byte and saves lots of memory
+
+- a bit field allows you to specify the number of bits in which an int member of a structure is stored 
+    - uses a special syntax in the structure definition that allows you to define a field of bits adn assign a name to that field 
+    - should use the explicit declarations signed int or unsigned int to avoid problems with hardware dependencies 
+        - C99 and C11 additionally allow type _Bool bit fields 
+    
+- bit fields enable better memory utilization by storing data in the minimum number of bits required 
+    - format enables you to allocate a specified number of bits for a data item 
+    - can easily set and retrieve its value without having to use masking and shifting 
+
+- a bit field is declared by following an unsigned int member name with a colon (:)
+    - an integer constant is placed after the colon which represents the width of the field 
+        - the number of bits in which the member is stored 
+    - the constant representing the width must be an integer between 0 and the total number of bits used to store an int (on your platform)
+
+- bit-field members of structures are accessed exactly as any other structure member 
+
+- it is possible to specify an unnamed bit field to be used as padding in the structure 
+
+- an unnamed bit field with a zero width is used to align the next bit field on a new storage unit boundary 
+

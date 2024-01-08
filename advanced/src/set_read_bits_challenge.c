@@ -25,12 +25,10 @@ int binaryToDecimal(const long long binary);
 
 int main(void)
 {
-    int userInput, nthBit, *pBit;
+    int userInput, nthBit;
 
-    printf("Enter any number: ");
+    printf("\nEnter any number: ");
     scanf("%d", &userInput);
-
-    pBit = &userInput;
 
     printf("Enter the nth bit to check and set (0-31): ");
     scanf("%d", &nthBit);
@@ -41,40 +39,27 @@ int main(void)
         exit(1);
     }
 
-    manipulateBit(pBit, nthBit);
+    printf("\n\nNumber before setting %d bit: %d\n\n", nthBit, userInput);
+
+    manipulateBit(&userInput, nthBit - 1);  // subtracting 1 from nthBit integer for correct indexing
+
+    printf("Number after setting %d bit: %d\n\n", nthBit, userInput);
 
     return 0;
 }
 
-void manipulateBit(int* numb, int bit)
+void manipulateBit(int* numb, int bitIndex)
 {
-    const int mask = makeMask(bit);
+    const int mask = makeMask(bitIndex);
 
-    printf("\nmask in decimal: %d\n", mask);
+    *numb |= mask;
 }
 
-int makeMask(int bit)
+int makeMask(int bitIndex)
 {
-    char temp[33];
+    int biNumb = pow(2, bitIndex);
 
-    for (int i = 0; i < 32; i++)
-    {
-        if (i == bit)
-        {
-            temp[i] = '1';
-            continue;
-        }
-        temp[i] = '0';
-    }
-    temp[33] = '\0';
-    
-    long long result = atoll(temp);
-
-    if (result == 0L)
-        printf("Error in atoll(), could not make string into long long integer value");
-        exit(1);
-
-    return binaryToDecimal(result);
+    return biNumb;
 }
 
 int binaryToDecimal(const long long binary)
