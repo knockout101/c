@@ -1,0 +1,30 @@
+Goto statement
+
+- statement causes program control to jump to a particular line of code in your program
+    - this branch is made immediately adn unconditionally upon execution of the goto 
+
+- a label is a name that is formed with the same rules as variable names
+
+- the label is placed directly before the statement to which the branch is to be made adn must appear in the same function as the goto 
+
+- goto and label 
+
+Form:
+
+goto label; // ends in semicolon
+.
+.
+.
+label : statement; // must have a semicolon after the label name
+
+- programmers who are lazy freqently abuse the goto statement to branch to other portions of their code
+
+- the goto statement interrupts the normal sequential flow of a program 
+    - as a result, programs are harder to follow and thus harder to maintain
+
+- using many gotos in a program can make it impossible to decipher 
+
+- this is why goto statements are not considered part of good programming style
+
+- in principle, you never need to use the goto statement in a C program, however, some programmers develop bad habits 
+    - or have learned programming languages where a goto was necessary, i.e. fortran
