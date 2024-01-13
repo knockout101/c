@@ -1,0 +1,19 @@
+- gets function stands for get string and reads a line from standard input into a buffer 
+    - reads until a terminating newline or EOF is found
+    - takes one argument, a pointer to an array of chars where the string is stored 
+    - returns str on success, and NULL on error or when end of file occurs 
+
+char *gets(char *str)
+
+- this function is deprecated and should never be used 
+    - removed from C11 
+    - two options instead (C99) are to use fgets() or getchar()
+
+- Never Invoke the gets() function 
+    - no check for buffer overflow is performed
+    - it is impossible to tell without knowing the data in advance how many characters gets() will read
+        - gets() will continue to store characters past the end of the buffer 
+
+- fgets is used for reading entire lines of data from a file/stream (file get string)
+    - has similar behavior to gets()
+    
