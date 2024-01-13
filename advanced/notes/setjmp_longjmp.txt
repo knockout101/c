@@ -1,0 +1,39 @@
+- setjmp and longjmp are junctions that let you perform complex flow control in C
+
+- setjmp when invoked returns 0, but when longjmp is called with the information set to the environment, the macro returns again; now it returns the value passed to longjmp as second argument
+
+- normal program flow in C follows function calls and branching contructs (if, while, etc.)
+    - functions setjmp and longjmp introduct another kind of program flow
+
+- mainly used to implement exception handling in C (error recovery situations)
+    - setjmp can be used like try ( in langs like C++ and Java)
+    - longjmp can be used like throw
+
+- suppose there is an error deep down in a function nested in many other functions and error handling makes sense only in the top level function 
+
+- the above is a situation where setjmp/longhmp makes sense 
+
+- you can use setjmp and longjmp for error handling so that you can jump out of deeply nested call chains without needing to deal with handling errors in every function in the chain
+
+- setjmp saves a copy of the program counter and the current pointer to the top of the stack 
+
+- int setjmp(jmp_buf j)
+    - use the variable j to remember where you are now 
+    - must be called first 
+
+- longjmp is then invoked after setjmp ( longjmp(jmp_buf j, int i) )
+    - says go back to the place that the j is remembering 
+    - stores the process in the state that it existed when it called setjmp 
+        - return the value of i so the code can tell when you actually got back here via longjmp() 
+    - the contents of the j are destroyed when it is used in a longjmp() 
+
+- often referred to as "unwinding the stack", because you unroll activation records from the stack until you get to the saved one 
+
+- the header file <setjmp.h> needs to be included in any source file that use setjmp or longjmp 
+
+- longjmp differs from a goto statement as a goto can't jump out of the current function in C 
+    - a longjmp can jump a long way away, even to a function in a different file 
+
+- you can only longjmp back to somewhere you have already been, where you did a setjmp, and that still has a live activation record 
+
+- setjmp is more like a "come from" statement than a "go to"

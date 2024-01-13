@@ -28,3 +28,13 @@ label : statement; // must have a semicolon after the label name
 
 - in principle, you never need to use the goto statement in a C program, however, some programmers develop bad habits 
     - or have learned programming languages where a goto was necessary, i.e. fortran
+
+- most gotos are used for helping ifs, simulating if elses, controlling loops, or are just there because you have programmed yourself into a corner
+    - break and continue are specialized forms of a goto statement
+
+- alternative forms are clearer than the goto forms 
+
+- there is one situation in which the goto statement can be very useful because it provides a way t oavoid a lot of complicated logic
+    - can be used to exit deeply nested control structures efficiently
+
+- you have a direct exit from the complete nest of loops without any complicated decision making in the outer loop levels

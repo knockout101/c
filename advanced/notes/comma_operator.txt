@@ -1,0 +1,15 @@
+Comma Operator
+
+- C supports the use of a comma that can be used in expressions as an operator 
+    - has the lowest precedence of any C operator 
+    - as as a sequence point 
+
+- a binary operator that evaluates its first operand and discards the result
+    - then evaluates the second operand and returns this value (and type)
+        - because all operators in C produce a value, the value of the comma operator is that of the rightmost expression 
+
+- the comma operator can be used to separate multiple expressions antywhere that a valid C expression can be used
+
+- the comma operator exists because there are times when you do not want to separate expresssions with semicolons
+
+- comma operator can be used to seperate statements but the comma itself can be used just as a seperater and not an operator.

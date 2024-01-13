@@ -1,0 +1,16 @@
+- putc() enables you to write a single character to a file (or to stdout)
+    - takes two arguments 
+        - the first argument is the character that is to be written into the file 
+        - the second argument is the FILE pointer that indentifies the file from which the character is to be written to 
+    - must first call fopen() in write or append mode 
+
+int putc(int char, FILE *fp)
+
+putc('\n', stdout);
+
+OR 
+
+putc('\n', outputFile);
+
+- has the effect of writing a newline character into the file identified by the FILE pointer outputFile
+

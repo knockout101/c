@@ -1,0 +1,10 @@
+- originally, input/output functions were not part of the definition of CPU
+
+- When a C program is executed, three files are automatically opened by the system for use by the program 
+    - stdin, stdout, and stderr (defined in <stdio.h>)
+        - stdin indentifies the standard input of the program and is normally associatedwith your terminal window
+            - all standard I/O functions that perform input and do not take a FILE pointer as an argument get their input from stdin 
+        - stdout refers to the standard output, which is normally also associated with your terminal window 
+        - stderr indentifies the standard error file 
+            - where most of the error messages produced by the system are written and is also normally associated with your terminal window 
+    
