@@ -31,3 +31,64 @@ char *fgets(char *buffer, int n, FILE *stream)
     - a null character is written immediately after the last character read into the array 
     - returns the value of buffer if the read is successful 
     - returns the value NULL if an error occurs on the read or if an attempt is made to read past the end of the file 
+
+- fgets() function retains the newline character (unlike gets)
+
+- it is possible to read a partial line when using fgets 
+    - truncation of user input can be detected because the input buffer will not contain a newline character 
+
+- the fgets function protects against overflowing the string and creating a security hazard 
+    - not recommended for performance reasons 
+
+- fgets is deprecated because the function cannot tell whether a null character is included in the string it reads 
+    - if a null character is read it will be stored in the string along with the rest of the characters read
+        - since a null character terminates a string, this will end your string prematurely, right before the first null character
+
+- only use fgets if you are certain the data read cannot contain a null character 
+    - otherwise, use getline
+
+getline 
+
+- the latest function for reading a string of text is getline()
+    - a new C library function, having appeared around 2010 or so
+
+- the getline function is the preferred method for reading lines of text from a stream (including standard input)
+    - the other standard functions, including gets, fgets, and scanf, are too unreliable 
+
+- the getline function reads an entire line from a stream 
+    - up to and including the next newline character adn takes three parameters
+
+ssize_t getline(char **buffer, size_t *size, FILE *stream);
+
+- the first parameter is a pointer to a block allocated with malloc or calloc (type char **)
+    - the address of the first character position where the input string will be stored 
+        - this pointer type (a pointer-pointer) causes massive confusion 
+    - will automatically enlarge the block of memory as needed (realloc)
+        - there is never a shortage of space (why getline is so safe)
+    - will contain the line read by getline when it returns 
+
+- the second parameter is a pointer to a variable of type size_t 
+    - specifies the size in bytes of the block of memory pointed to by the first parameter 
+    - the address of the variable that hold the size of the input buffer, another pointer 
+
+- the third parameter is simply the stream from which to read the line 
+
+- if an error occurs, such as end of file being reaced without reading any bytes, getline returns -1
+    - otherwise, returns the number of characters read (up to and including the newline, but not the final null character)
+
+puts()
+
+- the puts() function is used to write a line to the output screen
+    - the most convenient function for printing a simple message on standard output 
+    - automatically appends a newline 
+
+- it is simpler than printf since you do not need to include a newline character 
+
+- the difference between puts and printf is that when using printf the argument is interpreted as a formatting string 
+    - result will be often the same (except for the added newline) if the string doesn't contain any control characters(%)
+    - if you cannot rely on that you should not use puts 
+
+- the puts function is safe and simple, but not very flexible as it does not give us an option of formatting our string 
+
+int puts(const char *string)
+

@@ -1,0 +1,96 @@
+Overview
+
+- for some types of problems, it is useful to have functions call themselves 
+
+- a recursive function is a function that calls itself either directly or indirectly 
+
+- commonly used in applications in which the solution to a problem can be expressed in terms of successively applying the same solution to subsets of problems 
+
+- you are unlikely to come across a need for recursion very often 
+    - can considerably simplify code in some specific problems 
+
+- When a function calls itself, there is an immediate problem of having to stop it 
+
+void Looper(void)
+{
+    printf("Looper function called.\n");
+    Looper();
+}
+
+- calling this function would result in an indefinite number of lines of output 
+
+- a function that calls itself must contain a conditional test (base case) that terminates the recursion 
+
+int factorial(int n)
+{
+    // Factorial of 0 is 1 (base case is 0, return 1)
+    if(n == 0) return(1);
+
+    return(n*factorial(n-1));
+}
+
+- when a recursive function is called with a base case, the function simply returns a result 
+
+- when the function is called with more complex problem 
+    - the function divides the problem into two conceptual pieces 
+        - a piece that the function knows how to do 
+        - a slightly smaller version of the original problem 
+    
+- the recursion step can result in many more such recursive calls as the function keeps working on the smaller problem 
+
+- for recursion to terminate, the sequence of smaller and smaller problems must converge on the base case 
+    - when the function recognizes the base case, the result is returned to the previous function call 
+        - a sequence of returns ensues all the way up the line until the original call of the function eventually returns the final result 
+
+- any problem that can be solved with recursion can also be solved iteratively(non-recursively using loops)
+
+- both iteration and recursion are based on a control structure 
+    - iteration uses a repetition structure 
+    - recursion uses a selection structure 
+
+- both iteration and recursion involve repetition 
+    - iteration explicitly uses a repetition structure 
+    - recursion achieves repetition through repeated function calls 
+
+- iteration and recursion each involve a termination test
+    - iteration terminates when the loop-continuation condition fails 
+    - recursion terminates when a base case is recognized 
+
+- iteration with counter-controlled repetition and recursion each gradually approach termination 
+    - iteration keeps modifying a counter until the counter assumes a value that makes the loop-continuation condition fail 
+    - recursion keeps producing simply versions of the original problem until the base case is reached 
+
+- both iteration and recursion can occur infinitely
+    - an infinite loop occurs with iteration if the loop-continuation test never becomes false 
+    - infinite recursion occurs if the recursion step does not reduce the problem each time in a manner that converges on the base case 
+
+- a recursive approach is normally chosen in preference to an iterative approach when the recursive approach more naturally mirrors the problem 
+    - results in a program that is easier to understand and debug 
+
+- recursive functions can rapidly exhaust a computer's memory resources
+    - it repeatedly invokes the mechanism, and consequently the overhead, of function calls 
+        - expensive in both processor time nad memory space 
+    - each recursive call causes another copy of the function (only the function's variables) to be created (can consume considerable memory)
+
+- avoid using recursion in performance situations 
+
+- recursion can be hard to document and maintain 
+
+Tail Recursion 
+
+- tail recursion is the simplest form of recursion 
+    - the recursive call is at the end of the function, just before the return statement
+    - the recursive call comes at the end 
+    - acts like a loop 
+
+- tail recursive functions can be optimized by compiler 
+    - since the recursive call is the last statement, there is nothing left to do in the current function, so saving the current function's stack frame is of no use 
+
+- void print(int n)
+{
+    if(n < 0) return;
+
+    // the last executed statement is recursive call 
+    print(n - 1);
+}
+
