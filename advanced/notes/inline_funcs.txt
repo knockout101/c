@@ -44,3 +44,21 @@ inline static void foo() // inline definition/prototype
 {
     // do something
 }
+
+- if you have a multi-file program, you need an inline definition in each file that calls the function 
+    - the simplest way to accomplish this is to put the inline function definition in a header file 
+    - include the header file in those files that use the function 
+
+// foo.h 
+#ifndef FOO_H_ 
+#define FOO_H_ 
+
+inline static void foo() 
+{
+    // do something 
+}
+#endif
+
+- an inline function is an exception to the rule of not placing executable code in a header file 
+    - because the inline function has internal linkage, defining one in several files does not cause problems
+
