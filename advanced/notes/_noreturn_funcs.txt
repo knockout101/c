@@ -23,3 +23,40 @@ Overview
     - you must NOT return from the function 
 
 - compilers are encouraged, but not required to produce warnings or errors when a _Noreturn function appears to be capable of returning to its caller 
+
+- the _Noreturn keyword appears in a function declaration 
+
+- the _Noreturn specifier may appear more than once in the same function declaration 
+    - the behavior is the same as if it appeared once 
+
+- this specifier is typically used through the convenience macro noreturn 
+    - provided in the header file <stdnoreturn.h>
+    - _Noreturn = noreturn 
+
+_Noreturn void f()
+{
+    abort();
+}
+
+_Noreturn void g(int i)
+{
+    if(i > 0) abort();
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdnoreturn.h>
+
+noreturn void my_exit(void);
+
+void my_exit(void)
+{
+    printf("Exitting...\n");
+    exit(0);
+}
+
+int main(void)
+{
+    my_exit()
+    return 0;
+}
