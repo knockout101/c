@@ -1,0 +1,30 @@
+- C preprocessor offers a feature known as conditional compilation 
+    - often used to create one program that can be compiled to run on different computer systems 
+
+- if you had a large program that had many dependencies on specific hardware or software
+    - you might end up with many defines those values would have to be changed when the program was moved to another computer system 
+    - you can help reduce this problem by incorporating the values of these defines for each different machine into the program by using the conditional compilation capabilities of the preprocessor 
+
+- it is also used to switch on and off various statements in the program 
+    - debugging statements that print out the values of various variables 
+    - trace the flow of program execution 
+
+- conditional compilation enables you to control the execution of preprocessor directives and the compilation of program code 
+    - each of the conditional preprocessor directives evaluates an indentifier or a constant integer expression 
+        - cast expressions, sizeof expressions and enumeration constants cannot be evaluated in preprocessor directives
+
+- includes a set of commands that tell the compiler to accept or ignore blocks of information or code according to conditions at the time of compilation 
+
+- conditional preprocessor construct is much like the if selection statement 
+
+- every #if constuct ends with an #endif 
+
+- directives #ifdef and #ifndef are provided as shorthand for
+    - #if defined(name)
+    - #if !defined(name)
+
+- multiple-part conditional preprocessor constructs may be tested with directives #elif and #else 
+
+- this directive checks whether an identifier is currently defined 
+    - identifiers can be defined by a #define directive or on the command line 
+    
