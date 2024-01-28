@@ -37,7 +37,13 @@ Optional Additions
 */
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 
+typedef enum coin
+{
+    heads,
+    tails
+};
 
 typedef struct student
 {

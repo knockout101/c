@@ -27,4 +27,31 @@
 
 - this directive checks whether an identifier is currently defined 
     - identifiers can be defined by a #define directive or on the command line 
+
+- to set an identifier
+
+#define UNIX 1 OR #define UNIX 
+
+- most compilers also permit you to define a name to the preprocessor when the program is compiled 
+    - use the special option -D to the compiler command 
+
+gcc -D UNIX program.c 
+
+the general form of the #ifdef directive is 
+
+#ifdef identifier 
+
+- identifiers cannot be any keywords or enumeration constants 
+
+- if the identifier specified has been defined by the preprocessor 
+    - compile all the code up to the next #else or #endif, whichever comes first 
+    - if there is an #else, all code from the #else to the #endif is compiled if the identifier is not defined 
+
+- the #endif directive ends the scope of the #if, #ifdef, #ifndef, #else, or #elif directives 
+
+- the #endif directive has the following syntax 
+
+#endif newline 
+
+
     
