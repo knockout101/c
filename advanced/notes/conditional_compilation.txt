@@ -54,4 +54,67 @@ the general form of the #ifdef directive is
 #endif newline 
 
 
+#ifndef 
+
+- this directive checks to see if an identifier is not currently defiend 
+    - #ifndef is the negative of #ifdef 
+    - often used to define a constant if it is not already defined 
+
+- the #ifndef directive
+
+#ifndef identifier 
+
+- Ex 
+
+#ifndef SIZE
+    #define SIZE 100 
+#endif 
+
+- you can use the #if directive to test the value of a constant expression 
+    - a constant expression is specified through a #define statement or via the command line when the program is compiled 
+
+- the general form of the #if directive 
+
+#if constant_expression 
+
+- the operand must be constant integer expression that does not contain any increment (++), decrement (--), sizeof, pointer (*), address (&), and cast operators 
+    - you can also use relational and logical operators with the #if directive 
+
+- the constant expression is subject to text replacement and can contain references to identifiers defined in previous #define directives 
+
+- if an identifier used in the expression is not currently defined, the compiler treats the identifier as though it were the constant zero
+
+#else 
+
+- to complement the #ifdef/#ifndef and #if directives, you have the #else directive 
+    - work exactly the same way as the else statement does 
+    - identifies a group of directives to be executed or statements to be included if the #ifdef/#ifndef or #if condition fails 
+
+- the form #ifdef/#ifndef/#if/#else is must like that of the C if else 
+    - main difference is that the preprocessor does not recognize the braces ({}) syntax of marking a block 
+    - it uses the #else (if any) and the #endif (which must be present) to mark blocks of directives 
+        - these conditional structures can be nested 
     
+- with an #else directive, everything from the #else to the #endif is done if the identifier is not defined 
+
+#ifdef UNIX 
+#   define DATADIR "/unx1/data"
+#else 
+#   define DATADIR "\usr\data"
+#endif 
+
+- the above has the effectof defining DATADIR to "/unx1/data" if the symbol UNIX has been previously defined and to "\usr\data" otherwise 
+
+- you are allowed to put one or more spaces after the # that begins a preprocessor statement 
+
+- a value can also be assigned to the defined name on the command line 
+
+gcc -D DATADIR=/c/my_data
+
+- this directive is used for multiple-choice selections 
+    - similar to the combined use of the else-if statements in C
+    - optional 
+
+- the #elif directive has the general form 
+
+#elif constant_expression 

@@ -164,3 +164,5 @@ ptrst -> code = 3451; // assigns an int value to the code member of item
     - ptrst -> code 
     - item.code 
     (*ptrst).code 
+
+    
