@@ -1,0 +1,76 @@
+Overview 
+
+- macro is essentially a piece of code based on the #define directive 
+
+- behave similar to functions 
+
+- macros are a text processing feature and are "expanded" and replaced by macro definitions 
+
+- today, macros in C are considered outdated in terms of modern programming practices 
+    - however, they are still widely used because they make things easier for the programmer 
+
+#define MACRO macro_body 
+
+- each #define line has three parts 
+    - the first part is the #define directive itself 
+    - the second part is your chosen abbreviation, known as a macro name
+    - the third part (the remainder of the line) is termed the replacement list or body 
+        - preprocessor replaces macro name with the macro body 
+
+- you should use capital letters for macro function names 
+    - not as widespread as that of using capitals for macro constants 
+    - one good reason for using capitals is to remind yourself to be alert to possible macro side effects 
+
+- there are no spaces in the macro name, however, spaces can appear in the replacement string (macro_value)
+
+- macros are also not terminated by a semicolon
+ 
+- macros run until the first newline following the # 
+    - limited to one line in length by default unless you use the backlash operator (\) for continuation 
+
+Creating Your Own Macro 
+
+- two ways to define macros 
+    - symbolic constants (constants represented as symbols)
+    - function macros (operations defined as symbols)
+
+- the below definition does not look like a function (symbolic constants)
+
+#define NONFMAC some text here 
+
+- defines a macro and some replacement text 
+    - the replacement text for a macro is any text on the line after the identifier in the #define directive 
+
+- after the definition, the macro can be used as follows 
+
+NONFMAC 
+/* some text here */
+
+- leading or trailing white space around the replacement text is discarded 
+
+ - its name is simply just replaced by its replacement text 
+
+- function macros 
+
+#define FMAC(a,b) a here, then b 
+
+#define macro_name(list_of_identifiers) substitution_string 
+
+- defines a macro and some replacement text 
+    - the list of identifiers separated by commas (a, b) appears between parentheses following the macro_name (FMAC)
+    - each of these identifiers can appear one or more times in the substitution sting 
+
+- after the definition, the macro can be used as follows 
+
+FMAC(first text, some more)
+/* first text, then some more */
+
+- macros look like functions but behave different 
+
+- the replacement text for a macro is any text on the line after the identifier in the #define directive 
+
+- the replacement-text replaces the identifie and argument list in the program 
+
+- use should use parentheses around each argument and around the definition as a whole 
+    - ensures that the enclosed terms are grouped properly in an expression 
+    

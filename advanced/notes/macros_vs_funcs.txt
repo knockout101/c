@@ -1,0 +1,60 @@
+- many tasks can both be completed by functions and macros all the same 
+
+- however, there are huge difference under the hood 
+
+- macros are preprocessed 
+    - means that all the macros would be processed before your program compiles 
+    - functions are not preprocessed, they are compiled 
+
+- no hard and fast rule for macros vs functions useages 
+
+- the main trade off being between time and space 
+
+- a macro is faster than a function 
+    - program control must shift to where the function is and then return to the calling program 
+        - takes longer than inline code 
+
+- if you intend to use a macro instead of a function primarily to speed up a program 
+    - first try to determine whether it is likely to make a significant difference 
+
+- a macro that is used once in a program probably will not have any noticeable improvement in running time 
+
+- a macro inside a nested loop is a much better candidate for speed improvements 
+    - many systems offer program profilers to help you pin down where a program spends the most time 
+
+- when you call a function, it has to allocate some data (a newly allocated stack frame)
+    - macros do not have this overhead 
+    - macros insert code directly into the program (textual substitution)
+
+- a macro produces inline code (a statement in your program)
+    - if you use the same macro 20 times, you get 20 lines of code inserted into your program 
+    - if you use a function 20 times, you have to just one copy of the function statements in your program (less space is used)
+
+- functions are preferred over macros when writing large chunks of code 
+
+- macros have an advantage in that they do not have to worry about variables types 
+    - deal with character strings, not with actual values 
+    - a macro can be used equally well within an int or float
+        - just substitute the argument you pass them 
+    
+- functions give you type checking 
+    - if a function expects a string, but you give it an int, you will get an error 
+
+- macros have side effects 
+    - some compilers limit the macro definition to one line, and is best practice to adhere to that 
+
+- it is much harder to debug a macro than a function 
+    - a function can be stepped through but a macro cannot 
+    - when a macro fails, the only way you can find out what the problem is, is by looking at its definition and trying to find out what happened 
+        - you can tell gcc to tell you how everything expands using gcc -E source_file.c
+    
+- alternative to macros 
+    - inline functions are the best alternative 
+
+- when you add the inline keyword in front of a function, you are hinting to the compiler to embed the function body inside the caller (just like a macro)
+
+- inline functions can be debugged 
+
+- inline functions also have type checking 
+
+- however, the inline keyword is merely a hint to the compiler, it is not a strict rule and the compiler can decide to ignore the hint 
