@@ -46,20 +46,21 @@ Additional Challenges
 #define SQUARE(a) ((a) * (a))
 #define CUBE(a) ((a) * (a) * (a))
 #define SUM(a,b) ((a) + (b))
-#define IS_UPPER(char) \
-    if (64 < char && char < 91) \
-        char = 1; \
-    else \
-        char = 0;
+#define CHECK_CASE(ch) \
+int 
+    if(64 < ch && ch < 91) \
+        printf("%c is uppercase", ch)
         
 
 void problem1(void)
-{
-    printf("file: %s\nline: %s\ndate: %s\ntime: %s\n", __FILE__, __LINE__, __DATE__, __TIME__);
+{   
+    printf("\nProblem 1:\n\n");
+    printf("file: %s\nline: %d\ndate: %s\ntime: %s\n", __FILE__, __LINE__, __DATE__, __TIME__);
 }
 
 void problem2(void)
 {
+    printf("\nProblem 2:\n\n");
     int a = 0, b = 0;
 
     printf("Please enter any 2 numbers separated by a space to sum up: ");
@@ -70,6 +71,7 @@ void problem2(void)
 
 void problem3(void)
 {
+    printf("\nProblem 3:\n\n");
     int a = 0;
     printf("Please select a number to be squared and cubed: ");
     scanf("%d", &a);
@@ -80,15 +82,16 @@ void problem3(void)
 
 void problem4(void)
 {
+    printf("\nProblem 4:\n\n");
     char ch = 'l';
-    printf("")
+    IS_UPPER(ch);
 }
 
 int main(void)
 {
-    problem1();
-    problem2();
-    problem3();
+    //problem1();
+    //problem2();
+    //problem3();
     problem4();
 
     return 0;
