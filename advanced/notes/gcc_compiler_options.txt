@@ -1,0 +1,139 @@
+- When you invoke GCC, it normally does preprocessing, compilation, assembly and linking 
+    - some of the options to the compiler allow you to stop this process at an intermediate stage 
+        - for example, the -c option says not to run the linker 
+    - other options are passed on to one stage of processing 
+        - some options control the preprocessor and others the compiler itself 
+        - other options control the assembler and linker 
+
+Copilation steps 
+
+    - .c source file 
+    - compiler 
+    - assembly code 
+    - assembler 
+        - .o object file 
+    - linker 
+        - .o file and libraries go to linker 
+    - executable 
+
+- gcc program accepts options and file names as operands 
+    - many options have mutli-letter names 
+        - therefore mutliple single-letter options may not be grouped 
+            - -dr is very different from -d -r 
+
+- you can mix options and other arguments 
+
+- for the most part, the order you use does not matter 
+
+- order does matter when you use several options of the same kind 
+    - for example: if you specify -L more than once, the directories are search in the order specified 
+
+- many options have long names starting with -f or with -W--for example
+    - -fforce-mem, -fstrength-reduce, -Wformat and so on 
+
+
+- compile and link seperately 
+
+gcc -c main.c -> main.o 
+
+gcc -o main.exe main.o -> main.exe 
+
+gcc -E test.c : shows all the code that the preprocessor used to compile
+
+gcc -S test.c : shows the assembly code 
+
+gcc -save-temps test.c : produces .exe and all intermediate files required for full compilation process 
+
+*** commands work on both OS's *** 
+
+gcc -Wall test.c -o main -l m : -l links external library 
+
+gcc -c -Wall -fPIC main.c : first step in creating shared object file 
+
+gcc -shared -o main.so main o : would make this a shared object 
+
+gcc -g main.c : generates debugging information 
+
+gcc -v main.c : verbose output of the compiler
+
+gcc -Wall -ansi main.c : this will give check against the ANSI ISO C90 standard with a -Wall to show all warnings and errors
+
+-funsigned-char : 
+
+-fsigned-char vs -funsigned-char : treats char's either unsigned or as signed chars.
+
+gcc -DMY_MACRO main.c : Defines `MY_MACRO`
+
+gcc -Wall -Werror main.c : all warnings are being treated as errors
+
+gcc test.c @opt_file : @opt_file will be parsed for all options being used in command call
+
+Optimization flags 
+
+- there are options to control various sorts of optimizations 
+
+- without any optimization option, the compiler's goal is to reduce the cost of compilation and to make debugging produce the expected results 
+
+- turning on optimization flags makes the compiler attempt to improve the performance and/or code size at the expense of compilation time and possibly the ability to debug the program 
+
+- the compiler performs optimization based on the knowledge it has of the program 
+    - compiling multiple files at once to a single output file mode allows the compiler to use information gained from all of the files when compiling each of them 
+
+- not all optimizations are controlled directly by a flag 
+
+- most optimizations are completely disabled 
+
+- you can invoke GCC with -Q --help=optimizers to find out the exact set of optimizations that are enabled at each level <--------***
+
+-O 
+    - with -O, the compiler tries to reduce code size and execution time, without performing any optimizations that take a great deal of compilation time 
+
+-O1 
+    - optimizing compilation takes somewhat more time, and a lot more memory for a large function 
+
+-O2 
+    - optimize even more 
+    - GCC performs nearly all supported optimizations that do not involve a space-speed tradeoff 
+    - ss compared to -O, this option increases both compilation time and the performance of the generated code 
+
+-O3
+    - O3 turns on all optimizations specified by -O2 and also turns on more
+
+-Ofast
+    - Disregard strict standards compliance. -Ofast enables all -O3 optimizations. It also enables optimizations that are not valid for all standard-compliant programs. 
+      It turns on -ffast-math, -fallow-store-data-races and the Fortran-specific -fstack-arrays, unless -fmax-stack-var-size is specified, and -fno-protect-parens 
+
+-Og 
+    - Optimize debugging experience. -Og should be the optimization level of choice for the standard edit-compile-debug cycle, offering a reasonable level of optimization while maintaining fast compilation and a good debugging experience.
+      It is a better choice than -OO for producing debuggable code because some compiler passes that collect debug information are disabled at -O0
+
+GCC Environment Variables 
+
+- GCC uses the following environment variables 
+
+- PATH
+    - for searching the executables and run-time shared libraries(.dll, .so)
+
+- CPATH 
+    - for searching the include-paths for headers 
+    - searched after paths specified in -l<dir> options 
+    - C_INCLUDE_PATH can be used to specify C headers if the particular language was indicated in pre-processing 
+
+- LIBRARY_PATH 
+    - for searching library-paths for link libraries 
+    - it is searched after paths specified in -L<dir> options 
+
+Misc. Tools 
+
+- "nm" is commonly-used to check if a particular function is defined in an object file 
+    - a 'T' in the second column indicates a function that is defined 
+    - a 'U' indicates a function which is undefined and should be resolved by the linker 
+
+- "ldd" Utility (List Dynamic-Link Libraries) 
+    - examines an executable and displays a list of the shared libraries that it needs 
+
+ldd a.out <--?
+
+
+
+

@@ -1,0 +1,9 @@
+Overview 
+
+ - By using the conditional compilation directives (if, ifdef, else) you can arrange blocks of code to be included in your program to assist in debugging 
+
+ - you have ocmplete control of the formatting of data be displayed for debugging purposes 
+    - can even arrange for the kind of output to vary according to conditions of relations within the program 
+
+- by appopriate use of #ifdef statements, the debugging code can be enabled or disabled at your discretion 
+
