@@ -1,0 +1,35 @@
+Overview
+
+- profiling is a form of dynamic program analysis that measures
+    - space (memory)
+    - time complexity of a program (efficiency)
+    - usage of particular instructions
+    - the frequency and duration of function calls
+
+- profiling information serves to aid program optimization 
+
+- profiling is achieved by instrumenting either the program source code or its binary executable form using a specific profiling tool 
+
+- profilers may use a number of different techniques, such as event-based, statistical, instumented, and simulation methods 
+
+gprof
+
+- gnu profiling tool gprof and valgrind 
+
+- the gnu profiler gprof uses a hybrid approach of compiler assisted instrumentation and sampling 
+
+- Instrumentation is used to gather function all information (e.g. to be able to generate call graphs and count the number of function calls)
+
+- to gathert profiling information at runtime, a sampling process is used
+    - the program counter is probed at regular intervals by interrupting the program with operation system interrupts
+    - the resulting profiling data is not exact but are rather a statistical approximation gprof statisical inaccuracy 
+
+gcc -pg test.c test2.c -o test // -pg for the profiling analysis 
+
+"gmon.out created"
+
+gprof test gmon.out > analysis.txt
+
+    - call graph 
+    - flat profile 
+        - lots of function information
