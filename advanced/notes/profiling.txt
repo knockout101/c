@@ -33,3 +33,13 @@ gprof test gmon.out > analysis.txt
     - call graph 
     - flat profile 
         - lots of function information
+
+- gprof is outdated 
+
+- valgrind delivers the most accurate results and is well suited for multi-threaded applications
+    - slow execution of the application under test disqualifies it for larger, longer running applications 
+
+- gperftools (from google)
+    - CPU profile has very little runtime overhead 
+    - provides some nice features like selectively profiling certain areas of interest and has no problem with multi-threaded applications 
+

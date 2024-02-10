@@ -1,0 +1,68 @@
+Pointer to a pointer 
+
+- a form of multiple indirection 
+
+- when a pointer holds the address of another pointer, this is known as a pointer-to-pointer or double pointer 
+
+- in theory, we could get up to triple or more pointers, but its hardly ever used and should not be
+    - becomes impossible to maintain code 
+
+- a pointer points to a location in memory and thus used to store address of variables 
+
+- with a double pointer, the first pointer contains the address of the second pointer, which points to the location that contains the actual value 
+
+pointer -> pointer -> value 
+
+- two astrisks indicate that two levels of pointers are involved 
+
+int **var;
+
+- dereferencing the value of var:
+
+int x = **var;
+
+Conceptual Example
+
+// declaring double pointer 
+int **ipp;
+
+// decalring some ints 
+int i = 5, j = 6, k = 7;
+
+// initializing some pointers 
+int *ip1 = &i, *ip2 = &j;
+
+// assigning our double pointer 
+ipp = &ip1;
+
+- ipp points to ip1 which points to i 
+- *ipp is ip1 
+- **ipp is i (5) 
+
+Use Cases 
+
+- the biggest reason to use a double pointer is when you need to change the value of the pointer passed to a function as the function arguement 
+    - simulate pass by reference (remember, everything in C is pass by value/copy)
+
+- if you pass a single pointer in as an arguement 
+    - you will be modifying local copies of the pointer, not the original pointer in the calling scope 
+    - with a pointer to a pointer, you modify the original pointer 
+
+- use a double pointer as an argument to a function when you want to preserve the memory-allocation or assignment even outside of the function 
+
+- there are many other uses for double pointers, like the main() argument of every C program has a pointer to a pointer for argv 
+    - each element holds an array of chars that are the command line options 
+
+- you must be careful though when you use pointers of pointers to point to 2 dimensional arrays 
+    - better to use a pointer to a 2 dimensional array instead 
+
+void test()
+{
+    double **a;
+    int i1 = sizeof(a[0]); //i1 == 4 == sizeof(double*)
+
+    double matrix[ROWS][COLUMNS];
+    int i2 = sizeof(matrix[0]); //i2 == 240 == COLUMNS * sizeof(double)
+}
+
+- here is an example of a pointer to a 2 dimensional array done properly
