@@ -1,5 +1,5 @@
-#ifndef OTHER_H_INCLUDED
-#define OTHER_H_INCLUDED
+#ifndef LIB_H_INCLUDED
+#define LIB_H_INCLUDED
 
 int getfavoritenumber(void);
 

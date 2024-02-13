@@ -2,40 +2,55 @@
 Total Monthly
 */
 #include <stdio.h>
+#include <ctype.h>
+
+int strcopy(char* buffer, char* string);
+int strlength(char* const string);
+char* alphaStrip(char* string);
 
 int main(void)
-/* 
-points:
-items:
-POLS:
-PBR%:
-Team PBR%:
-TEAM ITEM AVG:
-
-Auto Items:
-    - 15: $100
-    - 20: 150
-    - 25: 200
-    - 30: 300
-    - 40: 400
-
-Life items:
-    - leads: $25 (4 min for green goal to qualify)
-    - sales: 100
-
-Home Items:
-    - 5: 100
-    - 8: 150
-    - 10: 200
-
-EB Items:
-    - 8/month
-
-Cross Sold Monoline
-    - 8/month
-*/
 {
-    
+    char *string = "Hello1";
+
+    printf("%s", alphaStrip(string));
 
     return 0;
 }
+
+int strcopy(char* buffer, char* string)
+{
+    int i = 0;
+    while(string[i] != '\0')
+    {
+        buffer[i] = string[i];
+        i++;
+    }
+
+    buffer[i] = '\0';
+
+    return 1;
+}
+
+int strlength(char* const string)
+{
+    int count = 0;
+    for(int i = 0; string[i] != '\0'; i++)
+        count++;
+    return count;
+}
+
+char* alphaStrip(char* string)
+{
+    int size = strlength(string);
+
+
+    for(int i = 0; i < size; i++)
+    {
+        if(isalpha(string[i]))
+        {
+            printf("True", string[i]);
+        }
+    }
+    return string;
+}
+

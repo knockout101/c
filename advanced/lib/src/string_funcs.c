@@ -27,28 +27,14 @@ int strcopy(char* buffer, char* string)
 {
     int i = 0;
     while(string[i] != '\0')
-        buffer[i] = string[i++];
+    {
+        buffer[i] = string[i];
+        i++;
+    }
 
     buffer[i] = '\0';
 
     return 1;
-}
-
-void alphaStrip(char* string)
-{
-    char temp[100];
-    strcopy(temp, string);
-    int i = 0, j = 0;
-    
-    while(temp[i] != '\0')
-    {
-        char ch = temp[i];
-        if (isalpha(ch))
-            string[j++] = ch;
-        i++;
-    }
-
-    string[j] = '\0';
 }
 
 int strlength(char* const string)
@@ -56,6 +42,18 @@ int strlength(char* const string)
     int count = 0;
     for(int i = 0; string[i++] != '\0'; count++);
     return count;
+}
+
+void alphaStrip(char* string)
+{
+    int size = strlength(string) + 1;
+    char temp[size];
+    int i = 0, j = 0;
+    while(string[i] != '\0')
+    {
+        if(isalpha(string[i]))
+            temp[j] = string[i];
+    }
 }
 
 char* strconcat(char* str1, char* str2)

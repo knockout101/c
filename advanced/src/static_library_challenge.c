@@ -16,15 +16,13 @@ int main(void)
     
     printf("%s + %s = %s\n", sample, subString, strconcat(sample, subString));
 
-    printf("hello");
-
     strcopy(sample, "Sample");
 
     printf("%s,  letter `%c` count: %d\n", sample, 'm', count(sample, 'm'));
-    printf("12(Hello) stripped: \n", sample2);
+    printf("%stripped: \n", sample2);
     alphaStrip(sample2);
     printf("%s\n", sample2);
-    printf("%s length is: %i\n", strlength(sample));
+    printf("%s length is: %i\n", sample, strlength(sample));
     strcopy(buffer, sample);
     printf("%s\n", buffer);
 
