@@ -3,6 +3,7 @@ Total Monthly
 */
 #include <stdio.h>
 #include <ctype.h>
+#include <string.h>
 
 int strcopy(char* buffer, char* string);
 int strlength(char* const string);
@@ -41,16 +42,22 @@ int strlength(char* const string)
 
 char* alphaStrip(char* string)
 {
-    int size = strlength(string);
+    int i , j;
 
-
-    for(int i = 0; i < size; i++)
+    for(i = 0; string[i] != '\0'; ++i)
     {
-        if(isalpha(string[i]))
+        while(!((string[i] >= 'a' && string[i] <= 'z') ||
+                (string[i] >= 'A' && string[i] <= 'Z') ||
+                 string[i] == '\0'))
         {
-            printf("True", string[i]);
+            for(j = i; string[j] != '\0'; ++j)
+            {
+                string[j] = string[j + 1];
+            }
+            string[j] = '\0';
         }
     }
+
     return string;
 }
 
