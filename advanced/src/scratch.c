@@ -42,21 +42,22 @@ int strlength(char* const string)
 
 char* alphaStrip(char* string)
 {
-    int i , j;
+    int i , j = 0;
+
+    char temp[100];
 
     for(i = 0; string[i] != '\0'; ++i)
     {
-        while(!((string[i] >= 'a' && string[i] <= 'z') ||
-                (string[i] >= 'A' && string[i] <= 'Z') ||
-                 string[i] == '\0'))
-        {
-            for(j = i; string[j] != '\0'; ++j)
-            {
-                string[j] = string[j + 1];
-            }
-            string[j] = '\0';
-        }
+        if(isalpha(string[i]))
+            temp[j++] = string[i];
     }
+
+    temp[j] = '\0';
+
+    for(i = 0; i < strlength(string); i++)
+        string[i] = '\0';
+
+    strcopy(string, temp);
 
     return string;
 }

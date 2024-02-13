@@ -1,11 +1,13 @@
 /*
 should contain implementations of various string manipulation functions
     - find the frequency of characters in a string 
-    - remove all the characters in a string except Alphabets
+    - remove all the characters in a string except Alphabets <-- need to look into function that creates this
     - Calculate the length of a string without using strlen 
     - concatenate two strings with using strcat 
     - copy a string manually without using strcpy 
     - find the substring of a given string
+
+***removed the void alphaStrip(char* string) function because segfault unresolved***
 */
 #include <stdio.h>
 #include <string.h>
@@ -42,18 +44,6 @@ int strlength(char* const string)
     int count = 0;
     for(int i = 0; string[i++] != '\0'; count++);
     return count;
-}
-
-void alphaStrip(char* string)
-{
-    int size = strlength(string) + 1;
-    char temp[size];
-    int i = 0, j = 0;
-    while(string[i] != '\0')
-    {
-        if(isalpha(string[i]))
-            temp[j] = string[i];
-    }
 }
 
 char* strconcat(char* str1, char* str2)
