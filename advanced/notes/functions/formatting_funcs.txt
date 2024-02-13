@@ -123,4 +123,4 @@ fflush(buffer);
 
 - the effect of using fflush() on an inpuit stream is undefined 
 
-- you can use it with an update stream ( any of the read-write modes), provided that the most recent operation using the stream was not input 
+- you can use it with an update stream (any of the read-write modes), provided that the most recent operation using the stream was not input 

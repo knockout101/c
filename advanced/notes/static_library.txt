@@ -1,0 +1,33 @@
+- create header file to include the proper macro definition for library 
+
+- must create the object for the header file
+
+- then create the archive with ar command and rcs "ar rcs lib<lib_name>.a ./obj/*" statically linking all the object files to the static library archive 
+
+- compile main object file using source file with "-I ./lib" the directory of the header file, and its -o output name and location 
+    - "gcc -I ./lib/headers/ -c ./src/static_library.c -o ./build/static_library.o 
+    - will produce static_library.o file 
+
+- use this object file with the included static library "main.h" when compiling main executable 
+    - "gcc -o ./build/static_library.exe ./obj/static_library.o ./lib/lib_lib.a"
+    - producing main executable 
+
+Linking to a static library (notes)
+
+- the compiler expects to find the libraries in certain directories 
+
+- the compiler option -Lpathname is used to tell the linker a list of other directories in which to search for libraries 
+    - if you put your archive somewhere else, like /my_lib?
+
+- the name that follows the -L option needs to match part of the archive name 
+
+- if your archive is called libawesome.a, you can compiler your program with the -lawesome switch 
+
+- the order of the statically linked libraries on the compiler command line is significant
+    - the linker is fussy about where libraries are mentioned, and in what order, since symbols are resolved looking from left to right 
+
+- this makes a difference if the same symbol is defined differently in two different libraries 
+
+- another problem occurs if you mention the static libraries before your own code 
+    - won't be any undefined symbols yet, so nothing will be extracted 
+    - when your object file is processed by the linker, all its library references will be undefined 
