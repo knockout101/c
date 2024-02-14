@@ -1,0 +1,11 @@
+
+- Knowledge and skills required to design and test embedded systems
+- Using microcontrollers, system-on-chip, and FPGA devices
+- Understanding multi-threaded programming on bare-metal, custom real-time operating systems, and embedded Linux systems
+- Implementation of IP stacks for computer networking
+- Network and wireless protocol development for Internet of Things devices
+- Design of real-time operating systems
+- Implementation of RISC processors in FPGA devices
+- Design of advanced digital logic systems
+- Analysis and design of microprocessor systems
+- Control of systems with electromechanical actuators and sensors

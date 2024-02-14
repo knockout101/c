@@ -1,0 +1,6 @@
+#ifndef DYNAMIC_LIBRARY_H_INCLUDED
+#define DYNAMIC_LIBRARY_H_INCLUDED
+
+void fun(void);
+
+#endif // DYNAMIC_LIBRARY_H_INCLUDED

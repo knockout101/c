@@ -54,9 +54,6 @@ char* alphaStrip(char* string)
 
     temp[j] = '\0';
 
-    for(i = 0; i < strlength(string); i++)
-        string[i] = '\0';
-
     strcopy(string, temp);
 
     return string;
