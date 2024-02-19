@@ -13,8 +13,6 @@ should contain implementations of various string manipulation functions
 #include <string.h>
 #include <ctype.h>
 
-#include "strfuncs.h"
-
 int count( char* string, char ch)
 {
     int count = 0, i = 0;
