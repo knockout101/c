@@ -1,0 +1,110 @@
+Overview
+
+- general utilities library (stdlib.h)
+    - random-number generators 
+    - program termination functions
+    - searching and sorting functions 
+    - conversion functions 
+    - memory-management functions 
+
+- more specifically 
+    - exit 
+    - atexit
+    - abort 
+    - qsort 
+
+- exit() 
+    - forces program to terminate as if it executed normally 
+
+int exit(int status);
+
+- any open files are automatically closed by the system 
+    - flushes all output streams 
+    - closes all open streams 
+    - closes temperary files created by calls to the stand I/O function tmpfile()
+
+- EXIT_FAILURE AND EXIT_SUCCESS are both symbolic constants represents an integer value that you cna use to indicate it has failed or succeeded 
+
+- when a program terminates simply by executing the last statment in main, its exit status is undefined 
+    - you should exit or return form main() with a defined edxit status 
+
+- atexit()
+    - allows you to specify particular functions to be called when exit() executes 
+        - must register the functions to be called on exit 
+
+    - takes as an argument a pointer to a function (the function name)
+
+    int atexit(void (*function)(void));
+
+    - to use the atexit() function 
+        - pass it the address of the function you want called on exit 
+        - registers this function in a list of functions to be executed when exit() is called 
+            - up to 32 functions may be registererd for execution at program termination 
+
+    - the functions registererd by atexit() should be type void functions taking no arguments 
+        - cannot have arguements and cannot return value 
+
+    - typically, the functions invoked would perform hosuekeeping tasks 
+        - updating a program-monitoring file 
+        - resetting environmental variables 
+
+- abort() 
+    - abort function causes abnormal program termination 
+        - raises the SIGABRT signal 
+        - returns an implementation defined code indicating unsuccessful termination 
+    
+    - the abort function follows the philosophy of "fail hard and fail often"
+
+    - this function causes a noticable failure because it will dump core 
+
+- the following may occur 
+    - file buffers are not flushed 
+    - streams are not closed 
+    - temporary files are not deleted 
+
+- functions passed to atexit() are not called 
+
+- note: will not cause the program to terminate if SIGABRT is being caught by a signal handler passed to signal and the handler does not return
+
+void abort(void);
+
+- the quick sort method is one of the most effective sorting algo's 
+    - particularly for larger arrays 
+    - partitions arrays into ever smaller until the element level is reached 
+
+- first, the array is divided into two parts, with every value in one partition being less than every value in the other partition 
+    - process continues until the array is fully sorted 
+
+- the name for the C implementation of the quick sort algorithm is qsort()
+    - sorts a data array pointed to by a function pointer (comparison function) passed into the qsort function
+
+- qsort() and the comparison function use void pointers for generality 
+    - you have to tell qsort() explicitly how large each element of the array is 
+    - you have to convert its pointer arguments to pointers of the proper type for your application
+
+void qsort(void* base, size_t nmemb, size_t size, int (*compar)(const void*, const void *));
+
+- the first argument is a pointer to the beginning of the array to be sorted 
+    - can refer to any kind of array because of use of void pointer 
+
+- the second argument is the number of items to be sorted 
+    - converts this value to type size_t 
+
+- the third argument is the size of each element 
+    - because qsort() converts its first argument to a void pointer, qsort() loses track of how big each array element is 
+        - to compensate, you must tell qsort() explicitly the size of the data object (this argument)
+
+- the final argument is the address of the function to be used for comparing elements 
+
+- the signature of the comparison function is 
+
+int (*compar)(const void*, const void*)
+
+- a pointer to a function that returns an int and that takes two arguments 
+    - each of which is a pointer to the type const void 
+        - these two pointers point to the items being compared 
+
+- the comparison function should return the following 
+    - a positive integer if the first item should follow the second value 
+    - a zero if the two itmes are the same 
+    - a negative integer if the second itme should follow the first
