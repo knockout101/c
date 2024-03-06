@@ -90,7 +90,7 @@ void challenge2(void)
 {
     double ar[MAX_DOUBLE];
 
-    printf("size: %d\n", MAX_DOUBLE);
+    
 
     fillArray(ar, MAX_DOUBLE);
 
@@ -113,8 +113,17 @@ void fillArray(double* ar, int size)
 
 void showArray(double* ar, int size)
 {
+    int count = 0;
+
     for(int i = 0; i < size; i++)
     {
-        printf("%.3f\n", ar[i]);
+        count++;
+        printf("%9.3f", ar[i]);
+
+        if(count > 3)
+        {
+            putchar('\n');
+            count = 0;
+        }
     }
 }
