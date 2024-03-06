@@ -107,4 +107,152 @@ int (*compar)(const void*, const void*)
 - the comparison function should return the following 
     - a positive integer if the first item should follow the second value 
     - a zero if the two itmes are the same 
-    - a negative integer if the second itme should follow the first
+    - a negative integer if the second time should follow the first
+
+Overview
+
+    - random-number generators 
+    - conversion functions 
+    - memory and string functions 
+
+    - atoi, atof, atol, strtod, strtof, strol, itoa 
+    - rand and srand 
+    - system 
+    - getenv 
+
+    - memcopy and memmove (string.h)
+    - strdup and strndup (string.h)
+
+random numbers
+
+- C provides the rand() and srand() functions in order to create random numbers 
+
+- random numbers can be used for many types of applications from security to use in games 
+    - can be used to generate UUID, Certificates, Passwords etc.
+
+- in order to generate random numbers, you generally need a hardware-based source which generates random signals 
+    - these signals can then be used to generate a random number 
+
+- creating randomness is difficult
+    - usually a seed is provided for every random function execution 
+
+- seed values are used to make a random start from the application point of view 
+    - we generally use functions like time or netweork traffic as a seed value because they are changing regularly
+
+rand() 
+
+int rand(void)
+
+- used to create random numbers without any parameters 
+
+- returns a random number in the range [0, RAND_MAX]
+    - RAND_MAX is defined in <stdlib.h> and has a minimum value of 32767
+
+srand()
+
+void srand( unsigned seed)
+
+- sets the starting point for producing a series of pseudo-random integers 
+    - if srand() is not called, the rand() seed is set as if srand(1) were called at program start 
+    - any other value for seed sets the generator to a different starting point 
+
+- the pseudo-random number generator should only be seeded once 
+    - before any calls to rand(), and the start of the program 
+    - it should not be repeatedly seeded 
+    - it should not be reseeded every time you wish to generate a new batch of pseudo-random numbers 
+
+- standard practice is to use the result of a call to srand(time(0)) as the seed
+    - time() returns a time_t value which varies everytime and hence the pseudo-random number varies for every program call 
+
+- general utilties 
+    - misc functions 
+    - memory and string functions 
+
+- more specifically
+    - system 
+    - getenv 
+
+- and from the string library 
+    - memcopy and memmove (string.h)
+    - strdup and strndup (string.h)
+
+system()
+
+- system function passes the command name or program name specified as an argument to the host environment 
+    - to be execute by the command processor and returns after the command has been completed 
+    - allows you to execute programs on the console/shell 
+
+int system(const char *command)
+
+- gives the command contained in the character array pointed to by command to the system for execution 
+    - the value returned is -1 on error, and the reutnr status of the command otherwise 
+
+system("mkdir /usr/tmp/data");
+
+- creates directory 
+
+getenv()
+
+- an environment is an implementation-defined list of NAME/VALUE pairs maintained by the operating system 
+
+- the operating system defines specific meanings to "Environment Variables"
+
+- not all implementations necessarily define same set of Environment Variables 
+    - they must define same meanings to whatever environment variables they have 
+
+- the function getenv searches for the environment string that is passed in 
+    - retuns a null-terminated string with the value of the requested environment variable, or NULL if that environment variable does not exist 
+
+char *getenv(char const *NAME);
+
+memcpy()
+
+- memcpy() and memmove() functions offer you almsot the same convenience for arrays like strcpy does for char arrays 
+
+void *memcpy(void * restrict s1, const void * restrict s2, size_t n);
+void *memmove(void *s1, const void *s2, size_t n);
+
+- both of these functions copy n bytes from the location pointed to by s2 to the location pointed to by s1 
+    - both return the value of s1
+
+- the difference between the two (as indicated by the keyword restrict) 
+    - memcpy() is free to assume that there is no overlap between the two memory ranges 
+
+- the memmove() function does not make that assumption 
+    - copying takes place as if all the bytes are first copied to a temporary buffer before being copied to the final destination 
+
+- if you use memcpy() when there are overlapping ranges then the behavior is undefined 
+    - it might work or it might not 
+
+- these function are designed to work with any data type 
+    - so, the two pointer arguments are type pointer-to-void 
+
+- these functions have no way of knowing what type of data is being copied 
+    - so they use the third argument to indicate the number of bytes to be copied 
+
+- remember, for an array, the number of bytes is not, in general, the number of elements 
+    - if you are copying an array of 10 double values 
+        - you would use 10*sizeof(double), not 10, as the third argument
+
+strdup and strndup 
+
+- these function are used to duplicate a given string 
+    - a non standard function which may not available in standard library in C 
+
+- returns a pointer to a null-terminated byte string, which is a duplicate of the string pointed to by s
+
+- the memory obtained is done dynamically using malloc and hence it can be freed using free() 
+
+char *strdup(const char* string);
+char *strndup(const char *s, size_t n);
+
+- strndup is similar to strdup(), but copies at most n bytes 
+    - if s is longer than n, then only n bytes are copied, and a NULL(") is added at the end 
+
+size_t and NULL
+
+- size_t 
+    - the unsigned integral type of is the result of the sizeof keyword 
+
+- NULL 
+    - macro is the value of a null pointer constant 
