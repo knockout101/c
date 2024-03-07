@@ -161,7 +161,10 @@ void challenge4(void)
 
     struct tm* prev_struct = localtime(&current_t);
 
-    prev_struct->tm_mday = 1;
+    prev_struct->tm_mday = 0;
+    prev_struct->tm_min = 0;
+    prev_struct->tm_hour = 0;
+    prev_struct->tm_sec = 0;
 
     if((ret = mktime(prev_struct)) == -1)
     {
@@ -169,5 +172,5 @@ void challenge4(void)
         exit(EXIT_FAILURE);
     }
 
-    printf("The seconds passed sense the beginning of the month: %fs", difftime(current_t, ret));
+    printf("The seconds passed sense the beginning of the month: %.2fs\n", difftime(current_t, ret));
 }
