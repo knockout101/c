@@ -1,0 +1,67 @@
+- its a linear data structure 
+
+- sequence of data structures which are connected together via links/nodes 
+    - each link contains data items 
+
+- there are different types of linked lists 
+    - singly linked list 
+        - can only be parsed one-way (forward)
+    - doubly linked list 
+        - previous and next pointers, can be traversed forward and backward 
+
+- linked lists are dynamic 
+    - the length of a list can increase or decrease as necessary 
+
+- a linked list can be used when the number of data elements to be represented in the data structure is unpredictable 
+
+- a node/link can contain data or any type including other struct objects 
+
+- linked lists can be maintained in sorted order by inserting each new element at the proper point in the list 
+
+Linked Lists and Pointers 
+
+- linked lists heavily use pointers in its implementation 
+
+- linked list work like an array that can grow and shrink as needed, from any point in the array 
+
+- linked list are accessed via a pointer to the first node of the lsit 
+
+- the link pointer in the last node of a list is set to NULL to mark the end of the list 
+
+Links/Nodes 
+
+- each node contains the following
+    - a piece of date
+    - the first node/link is often referred to as the head node/link 
+    - each node/link also contains a connection to another node/link 
+        - this is referred to as the next node/link 
+        - the last node/link points to NULL 
+
+- in order to traverse the list, you follow the pointer from each node/link to the next 
+
+- prepending to a list is a very fast 
+
+- inserting into a sorted list is very fast 
+
+linked lists vs arrays 
+
+- arrays are fixed size 
+
+- an array can be declared to contain more elements than the number of data items expected 
+    - this can waste memory 
+
+- linked lists can provide better memory utilization than arrays 
+    - using dynamic memory allocation that grow and shrink at execution time 
+        - however, extra memory space for pointer is required with each element of the list(more overhead)
+        - increases the risk of memory leaks and segment faults 
+
+- insert and deletion in a sorted array can be time consuming 
+    - all the elements follwoing the inserted or deleted element must be shifted appropriately 
+
+- the elements of an array are stored contiguously in memory 
+    - allows immediate access to any array element 
+
+- linked list elements are not stored at contiguous location
+    - elements are linked using pointers 
+    - have to access elements sequentially starting from the first node/link
+    
