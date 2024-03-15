@@ -29,8 +29,8 @@ typedef node_t* ListNodePtr;
 void insertAtBeginning(ListNodePtr* head, int value);
 void insertAtEnd(ListNodePtr* head, int value);
 void insert(ListNodePtr* head, int value);
-int delete(ListNodePtr* head, int position, int value);
-void update(node_t* node, int updated_value);
+int delete(ListNodePtr* head, int value);
+void update(ListNodePtr* head, int value, int updated_value);
 node_t findFirst(ListNodePtr* head, int value);
 
 void printList(ListNodePtr head);
@@ -203,8 +203,20 @@ void update(ListNodePtr* head, int value, int updated_value)
     ListNodePtr currentPtr = *head;
     
     if(currentPtr->data == value)
+        currentPtr->data = updated_value;
+    else
     {
+        while(currentPtr->nextPtr != NULL && currentPtr->data != value)
+            currentPtr = currentPtr->nextPtr;
         
+        if(currentPtr != NULL)
+            currentPtr->data = updated_value;
     }
 }
-node_t findFirst(ListNodePtr* head, int value);
+node_t findFirst(ListNodePtr* head, int value)
+{
+    ListNodePtr currentPtr = *head;
+
+    if(currentPtr->data == value)
+        return currentPtr;
+}
