@@ -17,6 +17,7 @@ Linked List Challenge
 */
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 typedef struct node
 {
@@ -28,19 +29,22 @@ typedef node_t* ListNodePtr;
 
 void insertAtBeginning(ListNodePtr* head, int value);
 void insertAtEnd(ListNodePtr* head, int value);
-void insert(ListNodePtr* head, int value);
-int delete(ListNodePtr* head, int value);
+void insert(ListNodePtr* head, int value, int position);
+int delete(ListNodePtr* head, int value, int position);
 void update(ListNodePtr* head, int value, int updated_value);
-node_t findFirst(ListNodePtr* head, int value);
-
+int findFirst(ListNodePtr head, int value);
 void printList(ListNodePtr head);
+bool isEmpty(ListNodePtr head);
+
 
 int main(void)
 {
     ListNodePtr head = NULL;
     int choice = 0, select = 0, select2 = 0;
 
-    printf("Please enter a number to choose from the list:\n"
+    while(choice != 8)
+    {
+        printf("Please enter a number to choose from the list:\n"
         "   1 - insert node at beginning\n"
         "   2 - insert node at the end\n"
         "   3 - insert node into specific position\n"
@@ -50,51 +54,60 @@ int main(void)
         "   7 - display list\n"
         "   8 - exit program\n");
 
-    printf(">> ");
-    scanf("%d", &choice);
-
-    while(choice != 8)
-    {
+        printf(">> ");
+        scanf("%d", &choice);
         switch(choice)
         {
             case 1:
-                printf("Enter a number value to be stored in the node: ");
+                printf("Enter a number value to be stored in the node at the beginning: ");
                 scanf("%d", &select);
                 insertAtBeginning(&head, select);
                 printList(head);
                 break;
             case 2:
-                printf("Enter a number value to be stored in the node: ");
+                printf("Enter a number value to be stored in the node at the end: ");
                 scanf("%d", &select);
                 insertAtEnd(&head, select);
                 printList(head);
                 break;
             case 3:
-                printf("Enter a number value to be stored in the node: ");
-                scanf("%d", &select);
-                insert(&head, select);
+                printf("Enter a value and a position separated by a space (value position): ");
+                scanf("%d %d", &select, &select2);
+                insert(&head, select, select2);
                 printList(head);
                 break;
             case 4:
-                printf("Enter a position to delete the node from: ");
-                scanf("%d", &select);
-                delete(&head, select);
-                printList(head);
+                if(!isEmpty(head))
+                {
+                    printf("Enter a value and a position separated by a space (value position): ");
+                    scanf("%d %d", &select, &select2);
+                    delete(&head, select, select2);
+                    printList(head);
+                }
+                else
+                    printf("\n[LINKED LIST] delete failed. List empty\n\n");
                 break;
             case 5:
-                printf("enter a position followed by a whole number to update that position (x y): ");
-                scanf("%d %d", &select, &select2);
-                update(&head, select, select2);
-                printList(head);
+                if(!isEmpty(head))
+                {
+                    printf("enter the value being replaced followed by the value that is going to be replacing it (replaced, new_value): ");
+                    scanf("%d %d", &select, &select2);
+                    update(&head, select, select2);
+                    printList(head);
+                }
+                else
+                    printf("List is empty, no values to update");
                 break;
             case 6:
                 printf("Enter a value you'd like to find in the linked list (returns first find): ");
-                scanf("%d", select);
-                findFirst(&head, select);
+                scanf("%d", &select);
+                printf("\nIndex: %d\n\n", findFirst(head, select));
                 printList(head);
                 break;
             case 7:
                 printList(head);
+                break;
+            default:
                 break;
         }
     }
@@ -132,9 +145,10 @@ void insertAtEnd(ListNodePtr* head, int value)
     }
 }
 
-void insert(ListNodePtr* head, int value)
+void insert(ListNodePtr* head, int value, int position)
 {
     ListNodePtr currentPtr, prevPtr, newPtr;
+    int count = 0;
 
     newPtr = malloc(sizeof(node_t));
 
@@ -146,11 +160,13 @@ void insert(ListNodePtr* head, int value)
         prevPtr = NULL;
         currentPtr = *head;
 
-        while(currentPtr->nextPtr != NULL && value > currentPtr->data)
+        while(currentPtr != NULL && count < position)
         {
+            count++;
             prevPtr = currentPtr;
             currentPtr = currentPtr->nextPtr;
         }
+
         if(prevPtr == NULL)
         {
             newPtr->nextPtr = *head;
@@ -166,7 +182,7 @@ void insert(ListNodePtr* head, int value)
         printf("The memory was not able to be allocated for %d", value);
 }
 
-int delete(ListNodePtr* head, int value)
+int delete(ListNodePtr* head, int value, int position)
 {
     ListNodePtr prevPtr, currentPtr, tempPtr;
     
@@ -206,17 +222,54 @@ void update(ListNodePtr* head, int value, int updated_value)
         currentPtr->data = updated_value;
     else
     {
-        while(currentPtr->nextPtr != NULL && currentPtr->data != value)
+        while(currentPtr != NULL && currentPtr->data != value)
             currentPtr = currentPtr->nextPtr;
         
         if(currentPtr != NULL)
             currentPtr->data = updated_value;
+        else
+            printf("No value");
     }
 }
-node_t findFirst(ListNodePtr* head, int value)
+int findFirst(ListNodePtr head, int value)
 {
-    ListNodePtr currentPtr = *head;
+    ListNodePtr currentPtr = head;
+    int count = 0;
 
     if(currentPtr->data == value)
-        return currentPtr;
+        return count;
+    else
+    {
+        while(currentPtr->nextPtr != NULL && currentPtr->data != value)
+        {
+            currentPtr = currentPtr->nextPtr;
+            count++;
+        }
+        return count;
+    }
+}
+
+void printList(ListNodePtr head)
+{
+    ListNodePtr currentPtr = head;
+
+    if(currentPtr == NULL)
+    {
+        printf("\n[LINKED LIST] empty\n\n");
+    }
+    else
+    {
+        printf("\n[LINKED LIST] ");
+        while(currentPtr != NULL)
+        {
+            printf("%d --> ", currentPtr->data);
+            currentPtr = currentPtr->nextPtr;
+        }
+        printf("NULL\n\n");
+    }
+}
+
+bool isEmpty(ListNodePtr head)
+{
+    return head == NULL;
 }
