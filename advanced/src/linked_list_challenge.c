@@ -30,7 +30,7 @@ typedef node_t* ListNodePtr;
 void insertAtBeginning(ListNodePtr* head, int value);
 void insertAtEnd(ListNodePtr* head, int value);
 void insert(ListNodePtr* head, int value, int position);
-int delete(ListNodePtr* head, int value, int position);
+int delete(ListNodePtr* head, int value);
 void update(ListNodePtr* head, int value, int updated_value);
 int findFirst(ListNodePtr head, int value);
 void printList(ListNodePtr head);
@@ -40,7 +40,7 @@ bool isEmpty(ListNodePtr head);
 int main(void)
 {
     ListNodePtr head = NULL;
-    int choice = 0, select = 0, select2 = 0;
+    int select = 0, select2 = 0, choice;
 
     while(choice != 8)
     {
@@ -55,62 +55,78 @@ int main(void)
         "   8 - exit program\n");
 
         printf(">> ");
-        scanf("%d", &choice);
-        switch(choice)
+        int res = scanf("%d", &choice);
+
+        printf("\n%d\n\n", res);
+        if(res > 0)
         {
-            case 1:
-                printf("Enter a number value to be stored in the node at the beginning: ");
-                scanf("%d", &select);
-                insertAtBeginning(&head, select);
-                printList(head);
-                break;
-            case 2:
-                printf("Enter a number value to be stored in the node at the end: ");
-                scanf("%d", &select);
-                insertAtEnd(&head, select);
-                printList(head);
-                break;
-            case 3:
-                printf("Enter a value and a position separated by a space (value position): ");
-                scanf("%d %d", &select, &select2);
-                insert(&head, select, select2);
-                printList(head);
-                break;
-            case 4:
-                if(!isEmpty(head))
-                {
+            switch(choice)
+            {
+                case 1:
+                    /* Insert at beginning */
+                    printf("Enter a number value to be stored in the node at the beginning: ");
+                    scanf("%d", &select);
+                    insertAtBeginning(&head, select);
+                    printList(head);
+                    break;
+                case 2:
+                    /* Insert at end */
+                    printf("Enter a number value to be stored in the node at the end: ");
+                    scanf("%d", &select);
+                    insertAtEnd(&head, select);
+                    printList(head);
+                    break;
+                case 3:
+                    /* Insert at position, or if position is out of range, add to the end */
                     printf("Enter a value and a position separated by a space (value position): ");
                     scanf("%d %d", &select, &select2);
-                    delete(&head, select, select2);
+                    insert(&head, select, select2);
                     printList(head);
-                }
-                else
-                    printf("\n[LINKED LIST] delete failed. List empty\n\n");
-                break;
-            case 5:
-                if(!isEmpty(head))
-                {
-                    printf("enter the value being replaced followed by the value that is going to be replacing it (replaced, new_value): ");
-                    scanf("%d %d", &select, &select2);
-                    update(&head, select, select2);
+                    break;
+                case 4:
+                    /* Check if empty, then delete's value if found in the list */
+                    if(!isEmpty(head))
+                    {
+                        printf("Enter a value to be deleted from the list: ");
+                        scanf("%d", &select);
+                        delete(&head, select);
+                        printList(head);
+                    }
+                    else
+                        printf("\n[LINKED LIST] delete failed. List empty\n\n");
+                    break;
+                case 5:
+                    /* check if empty, then update value if found in the list */
+                    if(!isEmpty(head))
+                    {
+                        printf("enter the value being replaced followed by the value that is going to be replacing it (replaced, new_value): ");
+                        scanf("%d %d", &select, &select2);
+                        update(&head, select, select2);
+                        printList(head);
+                    }
+                    else
+                        printf("\nList is empty, no values to update\n\n");
+                    break;
+                case 6:
+                    /* check if empty, then prints index (position) of the first found value selected */
+                    if(!isEmpty(head))
+                    {
+                        printf("Enter a value you'd like to find in the linked list (returns first find): ");
+                        scanf("%d", &select);
+                        printf("\nIndex: %d\n\n", findFirst(head, select));
+                        printList(head);
+                    }
+                    else
+                        printf("\nList is empty, no values to update\n\n");
+                    break;
+                case 7:
                     printList(head);
-                }
-                else
-                    printf("List is empty, no values to update");
-                break;
-            case 6:
-                printf("Enter a value you'd like to find in the linked list (returns first find): ");
-                scanf("%d", &select);
-                printf("\nIndex: %d\n\n", findFirst(head, select));
-                printList(head);
-                break;
-            case 7:
-                printList(head);
-                break;
-            default:
-                break;
-        }
-    }
+                    break;
+                default:
+                    break;
+                } // switch end
+            } // while end
+        } // if end
     
     return 0;
 }
@@ -182,7 +198,7 @@ void insert(ListNodePtr* head, int value, int position)
         printf("The memory was not able to be allocated for %d", value);
 }
 
-int delete(ListNodePtr* head, int value, int position)
+int delete(ListNodePtr* head, int value)
 {
     ListNodePtr prevPtr, currentPtr, tempPtr;
     
@@ -228,7 +244,7 @@ void update(ListNodePtr* head, int value, int updated_value)
         if(currentPtr != NULL)
             currentPtr->data = updated_value;
         else
-            printf("No value");
+            printf("\nThe value %d, doesn't exist in list\n", value);
     }
 }
 int findFirst(ListNodePtr head, int value)
@@ -240,12 +256,18 @@ int findFirst(ListNodePtr head, int value)
         return count;
     else
     {
-        while(currentPtr->nextPtr != NULL && currentPtr->data != value)
+        while(currentPtr != NULL && currentPtr->data != value)
         {
             currentPtr = currentPtr->nextPtr;
             count++;
         }
-        return count;
+        if(currentPtr == NULL)
+        {
+            printf("\nNo value was found\n\n");
+            return -1;
+        }
+        else
+            return count;
     }
 }
 
