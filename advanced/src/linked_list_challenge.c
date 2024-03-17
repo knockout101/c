@@ -40,7 +40,7 @@ bool isEmpty(ListNodePtr head);
 int main(void)
 {
     ListNodePtr head = NULL;
-    int select = 0, select2 = 0, choice;
+    int select = 0, select2 = 0, choice, ret;
 
     while(choice != 8)
     {
@@ -55,10 +55,10 @@ int main(void)
         "   8 - exit program\n");
 
         printf(">> ");
-        int res = scanf("%d", &choice);
 
-        printf("\n%d\n\n", res);
-        if(res > 0)
+        ret = scanf("\n %d", &choice);
+
+        if(ret > 0)
         {
             switch(choice)
             {
@@ -124,10 +124,15 @@ int main(void)
                     break;
                 default:
                     break;
-                } // switch end
-            } // while end
+            } // switch end
         } // if end
-    
+        else
+        {
+            printf("\nEnter must be between 1-8\n\n");
+            fflush(stdin);
+            continue;
+        }
+    } // while end
     return 0;
 }
 
