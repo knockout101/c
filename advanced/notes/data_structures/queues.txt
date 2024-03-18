@@ -1,0 +1,65 @@
+Overview 
+
+- Queue elements are removed only from the head of the queue 
+- Queue elements are inserted only at the tail of the queue 
+
+- a queue is referred to as a first-in, first-out (FIFO) data structure
+
+- two main operations in a queue 
+    - enqueue 
+    - dequeue 
+
+- enqueue will insert an element into the back of the queue 
+
+- dequeue will remove an element from the front of the queue 
+
+- other operations 
+    - isEmpty 
+    - isFull
+    - peek 
+    - poll or offer ( same as dequeue and enqueue)
+
+- some computer ahve only a single processor, so only one user at a time may be serviced 
+    - entries for other users are placed in queue 
+    - each entry gradually advances to the front of the queue as users are serviced 
+
+- information packets also wait in queues in computer networks 
+    - each time a packet arrives at a network node, it must be routed to the next node on the network 
+    - the routing node toues one packet at a time 
+        - additional packets are enqueued until the router can route them 
+    
+- basically, when a resource is shared among multiple consumers, queues are often utilized 
+
+Advantages 
+
+- speed 
+    - data queues are a fast method of inter-process communication 
+
+    - data queues free up jobs from performing some work 
+        - can lead to a better response time and an overall improvement in system performance 
+
+    - data queues serve as the fastest form of asynchronous communication between two different tasks 
+        - there is less overhead than with database files and data areas 
+
+- flexibility 
+    - queues are flexible, requiring no communications programming 
+
+    - programmer does not need any knowledge of inter-process communication 
+
+    - data queues allow computers to handle mutliple tasks 
+
+    - the queue can remain active when there are no entries and ready to process data entries when necessary 
+
+Implementation 
+
+- array or linked list systems 
+
+- for the single linked list implementation of a queue, we use a pointer to the front of the list (head) and a pointer to the rear of the list (tail)
+
+- the enqueue operation is performed by inserting the element at the rear of the list 
+
+- the dequeue op is performed by deleting the element at the front of the list 
+
+- some drawbacks of this implementation include speed (all the operations take constant time)
+    - calls to malloc and free are expensive especially in comparison to the poitner maniuplation routines 
+    

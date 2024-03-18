@@ -1,0 +1,72 @@
+Overview
+
+- a stack is a constrainted version of a linked list \
+
+- all insertions and deletions are only made at the top of the stack 
+
+- the last items in is the first out LIFO
+
+- a stack is referenced via a pointer to the top element of the stack
+    - a link memeber in the last node of the stack is set to NULL to indicate the bottom of the stack 
+    - not setting the link in the bottom node of a stack to NULL can lead to runtime errors 
+
+- stacks and linked lists are represented identically 
+    - difference is that insertions and deletions may occur anywhere in a linked list but only at the top of a stack 
+
+- the primary functions used to manipulate a stack are the push and pop function 
+
+- push inserts a new element and places it on top of the stack 
+
+- pop removes an element from the top of the stack 
+    - frees the memory that was allocated and returns the element 
+
+- other operations include 
+    - peek - looking at an element at the top without removing it 
+    - isEmpty - checking if the stack is empty 
+
+- a stack supports recursive function calls
+    - whenver a call is made, the function must know how to return to its caller, so the return addresss is pushed onto a stack 
+    - if a series of function calls occurs, the successive return values are pushed onto the stack in list-in, first-out order so that each function can return to its caller
+
+- stacks are used to store data in memory 
+    - contains the space created for automatic variables on each inocation of a function 
+    - when the function returns the space for those variables is popped off the stack 
+
+- the stack is useful during debugging 
+    - shows each function call and any nested function calls 
+
+- stacks are used by compilers in the process of evaluating expressions and generating machine language code 
+    balancing symbols (matching starting and ending brackets, parenthesis)
+
+- stacks can be used when implementing page visited history in a web browser 
+
+- a stack could be used as an "undo" operation in a text editor 
+
+- a stack can be used to implmeent post-fix notation in a computer language (orders of operations and operands)
+    - infix to Postfix/Prefix conversion
+
+- used in many algorithms like Tower of Hanoi, tree traversals, stock span problem, histogram problem 
+
+- an application to reverse a string could use a stack 
+    - pushing each letter of the string on to the stack 
+    - then pop them back (strng is now reversed)
+
+- a stack can be implemented either through an array or a linked list 
+
+- for the single linked list implementation of a stack, we use a pointer to the top of the list and a counter to keep track of the size of the list 
+
+- the push op is performed by inserting the element at the front of the list 
+
+- the pop op is performed by deleting the element at the front of the list 
+
+- some drawbacks of this implementation include speed (all the operations take constant time)
+    - calls to malloc and free are expensive especially in comparison to the pointer manipulation rountines 
+
+Array Implementation 
+
+- a simplier way of implementing a stack is to use an array 
+    - no need for pointers 
+
+- push and pop functions are implemented by using the operations available on an array 
+
+- the only problem with this implementation is array size must be specified initially
