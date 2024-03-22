@@ -50,7 +50,7 @@ Advantages
 
     - the queue can remain active when there are no entries and ready to process data entries when necessary 
 
-Implementation 
+LinkedList - Implementation 
 
 - array or linked list systems 
 
@@ -63,3 +63,8 @@ Implementation
 - some drawbacks of this implementation include speed (all the operations take constant time)
     - calls to malloc and free are expensive especially in comparison to the poitner maniuplation routines 
     
+Array Implementation 
+
+- keep track of two indices, front and rear 
+
+- 
