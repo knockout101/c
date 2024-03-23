@@ -67,4 +67,31 @@ Array Implementation
 
 - keep track of two indices, front and rear 
 
-- 
+- two integers named FRONT and REAR are used to keep track of the first and last elements in the queue
+
+- when initializing the queue, we set the value of FRONT and REAR to -1
+
+- on enqueing an element, we increase the value of REAR index and place the new element in the position pointed to by REAR 
+
+- on dequeing an element, we return the value pointed to by FRONT and increase the FRONT index 
+
+- before enqueing, we check if queue is already full 
+
+- before dequeuing, we check if queue is already empty 
+
+- when enqueing the first element, we set the value of FRONT to 0
+
+- when dequeuing the last element, we reset the values of FRONT and REAR to -1 
+
+- the following steps should be taken to enqueue (insert) data into a queue 
+
+step 1 - check if the queue is full 
+
+step 2 - if the queue is full, produce overflow error and exit 
+
+step 3 - if the queue is not full, increment rear pointer to point the next empty space
+
+step 4 - add data element to the queue location, where the rear is pointing 
+
+step 5 - return success 
+
