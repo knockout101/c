@@ -70,3 +70,46 @@ Binary Search Tree
     - if the target precedes the left-child item, you need to search only the left half of its descendants, and so on 
     - each comparison cuts the number of potential matches in half 
 
+- binary search tree combines a linked structure with binary search efficiency
+
+Basic Ops 
+
+- insert 
+
+- search
+
+- trees can be traversed in different ways because they are non-linear(inorder, preorder, postorder)
+
+- in order traversal 
+    - gives nodes in non-decreasing order 
+        - traverse the left subtree in-order 
+        - process the value in the node 
+        - traverse the right subtree in-order 
+    - the value in a node is not processed until the values in its left subtree are processed 
+    - prints the node values in ascending order 
+
+- preorder traversal 
+    - used to create a copy of the tree 
+    - the value in each node is processed as the node is visited 
+    - the values in the left subtree are then processed 
+    - then the values in the right subtree are processed 
+
+- postorder traversal 
+    - used to delete the tree the steps are 
+        - traverse the left subtree post-order 
+        - traverse the right subtree post-order 
+        - then process the value in the node 
+    - the value in each node is not processed until thevalues of its children are processed
+
+- when inserting or searching for an element in a binary search tree 
+    - the key of each visited node has to be compared with the key of the element to be inserted or found 
+
+- the shape of the binary search tree depends entirely on the order of insertions and deletions, and can become degenerate 
+
+- after a sequence of random insertion and deletion
+    - the expected height of the tree approaches the square root of the number of keys (sqrt(n))
+    - grows much faster than log n 
+
+    - there has been alot to prevent degeneration of the tree resulting in worst case time complexity of O(n)
+
+    
