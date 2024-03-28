@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <signal.h>
+#include <sys/signal.h>
 #include <stdlib.h>
 
 int main(void)
