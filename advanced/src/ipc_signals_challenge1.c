@@ -18,20 +18,8 @@
  * 
  * - the program needs to raise a signal if the user does not answer a question within 5 seconds
  *   - use the alarm function and catch the SIGALRM signal
- *
- * Challenge #2
- *
- * - write a program to create one parent with tree children processes (four processes)
- *   - must use the fork() function
- * - your program should contain output that indentifies each parent and each child 
- *   - will need to write if statements to check process id's returned from the fork() call, so that the output information is correct
- *     - "parent", "first child", "second child", "third child"
- *     - utilize the getpid() and getppid() functions to display each processes id
- *
- * - at some instance of time, it is not necessary that child process will execute first or parent process will be first allotted CPU
- *    - any process may get CPU assigned, at some quantum time
  *    - also, the process id may differ during different executions
- * */
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -56,12 +44,14 @@ void error(char *msg)
 
 void alarmHandler(int signum)
 {
-    error("[SIGALRM] You took longer than 5 seconds");
+    error("\n[SIGALRM] You took longer than 5 seconds - exit");
+    putchar('\n');
 }
 
 void interruptHandler(int signum)
 {
-    error("[SIGINT] program interrupted");
+    error("\n[SIGINT] program interrupted - exit");
+    putchar('\n');
 }
 
 int main() {
