@@ -5,9 +5,11 @@
 int main()
 {
     // make two process which run same program after this instruction
+    printf("this is before the fork\n");
+
     fork();
 
-    printf("Hello World!\n");
+    printf("process: %d ending!\n", getpid());
     return 0;
 }
 

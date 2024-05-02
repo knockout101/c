@@ -14,23 +14,58 @@
  */
 #include <unistd.h>
 #include <stdio.h>
+#include <unistd.h>
+
+#define MAX_PID 3
+
+int pid_list[MAX_PID + 1];
+
+int findPID(pid_t pid);
 
 int main(void)
 {
-    pid_t current = 0;
+    int count = 0, me = 0;
+
     pid_t parent_id = getpid();
 
-    printf("Parent PID: %u", parent_id);
-
-    
-    pid_t child1 = fork();
     if(getpid() == parent_id)
-        pid_t child2 = fork();
-    pid_t child3 = fork();
+        printf("Parent PID: %d\n", parent_id);
+    
+    for(int i = 0; i < 3; i++, count++)
+    {
+        // Parent forking and adding child PID to a list of children PID's
+        if(getpid() == parent_id)
+            pid_list[i] = fork();
+    }
+    // Child Only
+    if((me = getppid()) == parent_id)
+    {
+        for(int l = 0; l < MAX_PID; l++)
+        {
+           if(pid_list[l] == getpid())
+                printf("Child %d\n", l);
+        }
 
-    printf("Child 1 PID: %u", child1);
-    if(getpid() != parent_id && getpid())
-        printf("Parent of child 1 PID: %u", getppid());
+        int pid = getpid();
+        printf("My PID is: %d || Parent PID: %d <-- Child %d\n", pid, getppid(), findPID(pid));
+    }
+    // Parent Only
+    if(getpid() == parent_id)
+    {
+        for(int t = 0; t < MAX_PID; t++)
+        {
+            printf("PID%d = %d\n", t+1, pid_list[t]);
+        }
+    }
+    return 0;
+}
 
+int findPID(pid_t pid)
+{
+    for(int i = 0; i < MAX_PID; i++)
+    {
+        if(pid_list[i] == pid)
+            return i;
+    }
     return 0;
 }
