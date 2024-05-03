@@ -12,60 +12,58 @@
  *    - any process may get CPU assigned, at some quantum time
  *    - also, the process id may differ during different executions
  */
+#include <sys/types.h>
 #include <unistd.h>
 #include <stdio.h>
-#include <unistd.h>
+#include <stdlib.h>
+#include <sys/wait.h>
+#include <sys/mman.h>
+#include <string.h>
 
-#define MAX_PID 3
 
-int pid_list[MAX_PID + 1];
+#define SHM_SIZE 1024 /* 1k shared memory segment */
 
-int findPID(pid_t pid);
+void* create_shared_memory(size_t size)
+{
+    int protection = PROT_READ | PROT_WRITE;
+    int visibility = MAP_SHARED | MAP_ANONYMOUS;
+    return mmap(NULL, size, protection, visibility, -1, 0);
+}
 
 int main(void)
 {
-    int count = 0, me = 0;
+    int i = 0, status = 0, shmloc = 0;
+    pid_t parent = getpid(), res;
+    printf("Parent PID: %d\n", parent);
 
-    pid_t parent_id = getpid();
+    // Creating shared memory
+    int* shmem = (int*)create_shared_memory(sizeof(int));
 
-    if(getpid() == parent_id)
-        printf("Parent PID: %d\n", parent_id);
-    
-    for(int i = 0; i < 3; i++, count++)
+    // Check for error
+    if(shmem == NULL)
     {
-        // Parent forking and adding child PID to a list of children PID's
-        if(getpid() == parent_id)
-            pid_list[i] = fork();
+        fprintf(stderr, "Failed to create shared memory");
+        exit(EXIT_FAILURE);
     }
-    // Child Only
-    if((me = getppid()) == parent_id)
-    {
-        for(int l = 0; l < MAX_PID; l++)
-        {
-           if(pid_list[l] == getpid())
-                printf("Child %d\n", l);
-        }
 
-        int pid = getpid();
-        printf("My PID is: %d || Parent PID: %d <-- Child %d\n", pid, getppid(), findPID(pid));
-    }
-    // Parent Only
-    if(getpid() == parent_id)
+
+    // Creating n processes < 50
+    while(i++ < 10)
     {
-        for(int t = 0; t < MAX_PID; t++)
+        if(getpid() == parent)
         {
-            printf("PID%d = %d\n", t+1, pid_list[t]);
+            fork();
         }
     }
-    return 0;
-}
-
-int findPID(pid_t pid)
-{
-    for(int i = 0; i < MAX_PID; i++)
+    // Child Code
+    if(getppid() == parent)
     {
-        if(pid_list[i] == pid)
-            return i;
+        *shmem += 1;
+        printf("Child PID: %d  -- #%d\n", getpid(), *shmem);
+        exit(1);
     }
+    // wait for all processes to end
+    while((res = wait(&status)) > 0);
+
     return 0;
 }
