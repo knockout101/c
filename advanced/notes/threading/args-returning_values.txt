@@ -1,0 +1,7 @@
+Passing Arguments to Threads
+
+- the pthread_create() function permits the programmer to pass one argument to the thread start routine
+
+- when passing more than one argument, you can create a structure which contains all of the arguments, and then pass a pointer to that structure in the pthread_create()
+
+- all arguments must be cast to (void*)
