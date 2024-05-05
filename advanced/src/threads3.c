@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <stdio.h>
-#include <pthread.h>
 #include <string.h>
 #include <malloc.h>
 
@@ -39,5 +38,4 @@ int main(int argc, char* argv[])
     my_thread_data.message = "Hello World!";
 
     pthread_t my_id = pthread_create(&my_thread, NULL, printHello, (void*)my_thread_data
-
 }
